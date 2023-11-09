@@ -13,6 +13,7 @@
     "turbo": "latest"
   },
   "name": "AI-Vocabulary",
+  "author": "Rasmus Sievers",
   "packageManager": "yarn@1.22.19",
   "workspaces": [
     "apps/*",
