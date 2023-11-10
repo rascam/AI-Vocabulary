@@ -11,8 +11,12 @@
   "author": "Rasmus Sievers",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./index.ts",
+    "dev": "yarn db:start && nodemon ./index.ts",
+    "db:start": "docker compose up -d",
     "tsc": "tsc ./index.ts"
+  },
+  "prisma": {
+    "seed": "node ./prisma/prismaSeed.mjs"
   },
   "dependencies": {
     "@prisma/client": "5.5.2",
