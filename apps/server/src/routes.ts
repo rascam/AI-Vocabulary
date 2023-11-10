@@ -18,9 +18,9 @@ server.get("/", (req, res) => {
 })
 
 
-
 export default function startServer(): void {
   server.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`)
-  })
-}
+})
+  }
+
