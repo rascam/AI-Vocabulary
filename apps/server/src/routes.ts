@@ -7,11 +7,6 @@ const PORT = process.env.PORT || 3000
 
 // Define your routes here
 
-server.get("/test", (req, res) => {
-  console.log("Hello World!")
-  res.send("Hello World!")
-})
-
 server.get("/", (req, res) => {
   console.log("Root route")
   res.send("Root route")
