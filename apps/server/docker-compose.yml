@@ -1,13 +1,10 @@
-version: '3.9'
+version: '3.4'
 
 services:
-  voc_db:
+  postgres:
     image: postgres:15-alpine
     ports:
       - 5432:5432
-    volumes:
-      - ~/apps/postgres:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=LearnAlotOfLanguages
-      - POSTGRES_DB=aivocabulary_db
+      POSTGRES_PASSWORD: LearnAlotOfLanguages
+      POSTGRES_DB: aivocabulary_db
