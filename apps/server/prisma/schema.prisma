@@ -11,7 +11,39 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
+  id    String  @id @default(cuid())
   email String  @unique
+  hashedPass String
   name  String?
+  userSrcLang String
+  userTargetLang String
+  userLevel Level
+  learningDirection Direction
+  slowSpeech Boolean
+  words Int[]
+  score Int
+}
+
+model Words {
+  id Int @id @default(autoincrement())
+  srcWord String
+  targetWord String
+  imgUrl String
+  
+}
+
+enum Level {
+  beginner
+  sophisticated
+}
+
+enum Direction {
+  srcToTarget
+  targetToSrc
+}
+
+
+model Language {
+  langCode String @unique
+  langCodeSpecific String
 }
