@@ -20,17 +20,22 @@ model User {
   userLevel Level @default(beginner)
   learningDirection Direction @default(srcToTarget)
   slowSpeech Boolean @default(false)
-  words Int[]
+  words Word[]
   userVocCount Int @default(0)
   score Int @default(0)
 }
 
 model Word {
   id Int @id @default(autoincrement())
+  userId String 
+  user User @relation(fields: [userId], references: [id])
   srcWord String
   targetWord String
-  imgUrl String
-  credits String
+  imgUrl String @default("")
+  credits String @default("")
+  voice String  @default("")
+  voiceSlow String @default("")
+  bin Int @default(0)
 }
 
 enum Level {
