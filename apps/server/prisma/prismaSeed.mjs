@@ -10,11 +10,10 @@ async function seed() {
       hashedPassword: "3nren5ehsa",
       userSrcLang: "en",
       userTargetLang: "pt-br",
-      // userLevel: "beginner",
-      // learningDirection: "srcToTarget",
-      // slowSpeech: false,
-      // words: [],
-      // score: 0,
+      userLevel: "beginner",
+      learningDirection: "srcToTarget",
+      slowSpeech: false,
+      score: 0,
     },
   })
 
