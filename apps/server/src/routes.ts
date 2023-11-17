@@ -21,7 +21,7 @@ server.use(express.json())
 
 // Define your routes here
 
-server.get("/user/:id", async (req, res) => {
+server.get("/users/:id", async (req, res) => {
   const email = req.params.id;
   try {
     const user = await getUser(email);
@@ -31,7 +31,7 @@ server.get("/user/:id", async (req, res) => {
   }
 })
 
-server.post("/user", async (req, res) => {
+server.post("/users", async (req, res) => {
   const user = req.body;
   try {
     const createdUser = await registerUser(user);
