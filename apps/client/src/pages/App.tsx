@@ -23,8 +23,10 @@ function App() {
 
   return (
     <>
-      <h1 className='text-8xl'>AI Vocablary</h1>
+    <div className="appContainer">
+    <h1 className="title-text text-6xl">AI Vocabulary Trainer</h1>
       {user && CardList(user.words)}
+    </div>
     </>
   )
 }
