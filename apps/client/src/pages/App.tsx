@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import api from '../lib/api'
 import '../App.css'
+import CardList from '../components/CardList'
 
 function App() {
 
@@ -23,12 +24,7 @@ function App() {
   return (
     <>
       <h1 className='text-8xl'>AI Vocablary</h1>
-      {user && user.words.map((word: any) => (
-        <div className="card" key={word.id}>
-          <h5>{word.srcWord}</h5>
-          <h5>{word.targetWord}</h5>
-        </div>
-      ))}
+      {user && CardList(user.words)}
     </>
   )
 }
