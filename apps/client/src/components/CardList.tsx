@@ -1,10 +1,11 @@
 import { defaultImg } from '../lib/const'
+import { Word } from '../lib/types'
 
-function CardList(words: any) {
+function CardList(words: Word[]) {
 
   return (
     <div className="">
-      {words.map((word: any) => (
+      {words.map((word: Word) => (
         <div key={word.id} className={`card card${word.bin}`}
           style={{
           background: `linear-gradient(#19778d99, #19778d99), url(${word.imgUrl || defaultImg})`,
