@@ -4,7 +4,7 @@ import { Word } from '../lib/types'
 function CardList(words: Word[]) {
 
   return (
-    <div className="">
+    <div className="vocContainer">
       {words.map((word: Word) => (
         <div key={word.id} className={`card card${word.bin}`}
           style={{

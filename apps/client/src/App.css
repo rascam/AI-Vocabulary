@@ -230,10 +230,10 @@ select {
 }
 
 .vocContainer {
-  display: none;
   width: 100%;
   margin: 0 auto;
   padding: 0rem;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
