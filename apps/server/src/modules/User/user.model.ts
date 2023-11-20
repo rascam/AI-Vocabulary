@@ -11,6 +11,17 @@ export async function userEmailExists(email: string) {
   return user? true : false
 }
 
+
+export async function userIdExists(userId: string) {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId
+    }
+  })
+  return user? true : false
+}
+
+
 export async function getUserById (userId: string) {
   const user = await prisma.user.findUnique({
     where: {

@@ -6,6 +6,8 @@ dotenv.config()
 const PORT = process.env.PORT || 3000
 
 import { getUser, registerUser } from "./modules/User/user.controller"
+import { createWordsByTopic } from "./modules/Word/word.controller"
+
 
 
 // Middleware
@@ -31,11 +33,22 @@ server.get("/users/:id", async (req, res) => {
   }
 })
 
+server.post("/users/:id/topic", async (req, res) => {
+  const userId = req.params.id;
+  const topic = req.query.topic as string
+  try {
+    const newWords = await createWordsByTopic(userId, topic);
+    res.status(201).json(newWords);
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred while fetching the user" });
+  }
+})
+
 server.post("/users", async (req, res) => {
   const user = req.body;
   try {
     const createdUser = await registerUser(user);
-    res.json(createdUser);
+    res.status(201).json(createdUser);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred while creating the user" });
