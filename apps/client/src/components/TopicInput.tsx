@@ -15,7 +15,7 @@ const [topic, setTopic] = useState("")
       <div className="input">
         <form id="addTopicForm" action="#">
           <input type="text" className="inputfield" id='input-addTopic' name="topic" onChange={(e) => setTopic(e.target.value)} placeholder="Enter a topic" value={topic} />
-          <button type="submit" onSubmit={(e) => submitHandler(e)} className='button button-small' id="button-addTopic">+10</button>
+          <button type="submit" className='button button-small' id="button-addTopic">+10</button>
         </form>
       </div>
     </div>

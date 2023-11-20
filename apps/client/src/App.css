@@ -95,6 +95,7 @@ a {
 }
 
 .inputContainer {
+  display: flex;
   width: 100%;
   margin: 0 auto 2rem auto;
   padding: 0rem;
@@ -116,12 +117,12 @@ a {
 }
 
 .button {
+  background-color: #ffb703;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   color: #023047;
   margin: 0.5em 0.25em 0.5em 0.25em;
   padding: 0.5em 1em;
-  background-color: #ffb703;
   border: 2px solid #fb8500;
   border-radius: 0.5em;
   cursor: pointer;
