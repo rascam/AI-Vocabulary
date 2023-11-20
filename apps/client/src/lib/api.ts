@@ -9,7 +9,7 @@ const api = {
     }
   },
 
-  async createCardsByTopic(userId: string, topic: string) {
+  async createWordsByTopic(userId: string, topic: string) {
     const response = await fetch(`${BASE_URL}users/${userId}?topic=${topic}`, {
       method: "POST"
     })
