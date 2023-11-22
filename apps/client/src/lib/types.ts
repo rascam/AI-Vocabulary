@@ -5,6 +5,8 @@ export interface User {
   userSrcLang: string
   userTargetLang: string
   userLevel: string
+  userVocCount: number
+  score: number
   learningDirection: string
   slowSpeech: boolean
   words: Word[]
@@ -19,3 +21,10 @@ export interface Word {
   voiceSlow: string
   bin: number
   credits: string}
+
+  export type DisplaySwitch = {
+    settings: boolean
+    topicInput: boolean
+    stats: boolean
+    vocList: boolean
+  }

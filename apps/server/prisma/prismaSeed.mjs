@@ -13,7 +13,8 @@ async function seed() {
       userLevel: "beginner",
       learningDirection: "srcToTarget",
       slowSpeech: false,
-      score: 0,
+      score: 27,
+      userVocCount: 15,
     },
   })
 

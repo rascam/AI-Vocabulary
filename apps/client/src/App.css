@@ -52,7 +52,7 @@ a {
 }
 
 .statusRow {
-  display: none;
+  display: flex;
   justify-content: end;
   align-items: center;
   gap: 1rem;
@@ -267,7 +267,6 @@ select {
 
 .flexContainer {
   display: flex;
-  display: none;
   width: 100%;
   margin: 3rem auto 3rem auto;
   flex-flow: wrap;
@@ -277,7 +276,7 @@ select {
 }
 
 .settingsContainer {
-  display: none;
+  display: block;
   position: relative;
   background-color: #023047;
   color: white;

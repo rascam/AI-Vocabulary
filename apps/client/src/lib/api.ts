@@ -10,14 +10,16 @@ const api = {
   },
 
   async createWordsByTopic(userId: string, topic: string) {
-    const response = await fetch(`${BASE_URL}users/${userId}?topic=${topic}`, {
-      method: "POST"
+    const response = await fetch(`${BASE_URL}users/${userId}/topic?topic=${topic}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      }
     })
     if (response.ok) {
       return await response.json()
     }
   }
-
 }
 
 export default api

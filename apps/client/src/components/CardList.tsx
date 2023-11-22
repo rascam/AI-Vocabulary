@@ -1,7 +1,7 @@
 import { defaultImg } from '../lib/const'
 import { Word } from '../lib/types'
 
-function CardList(words: Word[]) {
+function CardList({words}: {words: Word[]}) {
 
   return (
     <div className="vocContainer">
