@@ -36,12 +36,13 @@ server.get("/users/:id", async (req, res) => {
 server.post("/users/:id/topic", async (req, res) => {
   const userId = req.params.id;
   const topic = req.query.topic as string
-  try {
+  // try {
     const newWords = await createWordsByTopic(userId, topic);
     res.status(201).json(newWords);
-  } catch (error) {
-    res.status(500).json({ error: "An error occurred while fetching the user" });
-  }
+  // } 
+  // catch (error) {
+  //   res.status(500).json({ error: "An error occurred creating new words by topic" });
+  // }
 })
 
 server.post("/users", async (req, res) => {

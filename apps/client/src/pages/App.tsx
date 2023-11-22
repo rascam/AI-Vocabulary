@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import api from '../lib/api'
 import '../App.css'
-import { User, DisplaySwitch } from '../lib/types'
+import { User } from '../lib/types'
 
 import CardList from '../components/CardList'
 import TopicInput from '../components/TopicInput'
