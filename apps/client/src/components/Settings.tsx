@@ -30,8 +30,8 @@ function Settings ({userId, learningDirection, slowSpeech, setUser}: { userId: s
     <div className="settingsContainer" id="settingsContainer">
         <div className="learningDirection">
           <span>English</span>
-          <div className="buttonSettings" id="toggleLearningDirection">
-            <i id="learningDirectionIcon" onClick={toggleLearningDirection} className={learningDirection === "targetToSrc" ? "fa-solid fa-arrow-up" : "fa-solid fa-arrow-down"}></i>
+          <div onClick={toggleLearningDirection} className="buttonSettings" id="toggleLearningDirection">
+            <i id="learningDirectionIcon" className={learningDirection === "targetToSrc" ? "fa-solid fa-arrow-up" : "fa-solid fa-arrow-down"}></i>
             <span>Portuguese</span>
           </div>
         </div>
