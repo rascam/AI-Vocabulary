@@ -2,10 +2,10 @@ function Settings () {
   return (
     <div className="settingsContainer" id="settingsContainer">
         <div className="learningDirection">
-          <p id="learningDirectionSrcLang"></p>
+          <p>English</p>
           <div className="buttonSettings" id="toggleLearningDirection">
             <i id="learningDirectionIcon" className="fa-solid fa-arrow-right-long"></i>
-            <p id="learningDirectionTargetLang"></p>
+            <p>Portuguese</p>
           </div>
         </div>
         <p>Speech Speed:</p>
