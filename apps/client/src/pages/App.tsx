@@ -9,11 +9,13 @@ import Statistics from '../components/Statistics'
 import StatusRow from '../components/StatusRow'
 import Settings from '../components/Settings'
 
+import { testUser } from '../lib/const'
 
 function App() {
 
-  const [loggedInUserId, setLoggedInUserId] = useState("clp9zm4wb0000hv7bp8itygfa")
+  const [loggedInUserId, setLoggedInUserId] = useState(testUser)
   const [user, setUser] = useState<User | null>(null)
+  const [words, setWords] = useState([])
 
   // const [showStats, setShowStats] = useState(true)
   // const [showVocList, setShowVocList] = useState(true)
@@ -27,6 +29,7 @@ function App() {
       const userData = await api.getUserData(loggedInUserId)
       if (userData) {
         setUser(userData)
+        setWords(userData.words)
         console.log({userData})
       }
     }
@@ -42,14 +45,13 @@ function App() {
         {showElement.topicInput &&
           <TopicInput userId={loggedInUserId} />}
         {showElement.settings &&
-          <Settings />}
+          <Settings learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech}/>}
         {showElement.stats && 
           <Statistics vocCount={user?.userVocCount || 0} score={user?.score || 0} />}
       </div>
       {showElement.vocList && user &&
-        <CardList words={(user.words)} />}
+        <CardList words={(words)} />}
     </div>
-    
   )
 }
 

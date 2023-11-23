@@ -9,6 +9,26 @@ const api = {
     }
   },
 
+  async getWordsByUserId(userId: string) {
+    const response = await fetch(`${BASE_URL}users/${userId}/words`)
+    if (response.ok) {
+      return await response.json()
+    }
+  },
+
+  async patchSingleUserData(userId: string, key: string, data: string | number) {
+    const response = await fetch(`${BASE_URL}users/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({key, data})
+    })
+    if (response.ok) {
+      return await response.json()
+    }
+  },
+
   async createWordsByTopic(userId: string, topic: string) {
     const response = await fetch(`${BASE_URL}users/${userId}/topic?topic=${topic}`, {
       method: "POST",

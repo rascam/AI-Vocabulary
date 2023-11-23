@@ -6,7 +6,7 @@ dotenv.config()
 const PORT = process.env.PORT || 3000
 
 import { getUser, registerUser } from "./modules/User/user.controller"
-import { createWordsByTopic } from "./modules/Word/word.controller"
+import { createWordsByTopic, getWords } from "./modules/Word/word.controller"
 
 
 
@@ -24,9 +24,19 @@ server.use(express.json())
 // Define your routes here
 
 server.get("/users/:id", async (req, res) => {
-  const email = req.params.id;
+  const userId = req.params.id;
   try {
-    const user = await getUser(email);
+    const user = await getUser(userId);
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred while fetching the user" });
+  }
+})
+
+server.get("/users/:id/words", async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const user = await getWords(userId);
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: "An error occurred while fetching the user" });

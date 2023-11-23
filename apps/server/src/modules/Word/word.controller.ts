@@ -1,7 +1,11 @@
 import { getUserById } from "../User/user.model"
-import { createWord } from "./word.model"
+import { createWord, getWordsByUserId } from "./word.model"
 import { Word, User } from '../../lib/types'
 import { createWordListByTopic } from "../ChatGPT/chatGPT.controller"
+
+export async function getWords(userId: string) {
+  return getWordsByUserId(userId)
+}
 
 export async function createWordsByTopic(userId: string, topic: string) {
   const user = await getUserById(userId) as User
