@@ -29,6 +29,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+apps/server/voc2023-bd52f19c1132.json
+apps/server/voc2024-ef011c6bd351.json
+
 # turbo
 .turbo
 

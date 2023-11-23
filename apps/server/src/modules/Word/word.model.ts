@@ -16,7 +16,7 @@ export async function getWordsByUserId (userId: string) {
 }
 
 
-export async function createWord(userId: string, srcWord: string, targetWord: string) {
+export async function createWord(userId: string, srcWord: string, targetWord: string, voice: string = "", voiceSlow: string = "") {
   const createdWord = await prisma.word.create({
     data: {
       userId,
@@ -24,8 +24,8 @@ export async function createWord(userId: string, srcWord: string, targetWord: st
       targetWord,
       imgUrl: "",
       credits: "Paul Platzhalter",
-      voice: "",
-      voiceSlow: "",
+      voice,
+      voiceSlow,
       bin: 0
     }
   })
