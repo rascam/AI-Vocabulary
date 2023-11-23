@@ -1,26 +1,28 @@
 import openai from './openai'
+import { temperatureGPT } from '../../lib/const'
+import { languages } from "../../lib/languagesConfig"
 
 
-export async function createChatCompletion(prompt: string) {
+export async function createChatCompletion(prompt: string, userSrcLang: string, userTargetLang: string) {
 
-  // Old
-  // const chatCompletion = await openai.createChatCompletion({
-    //   model: "gpt-3.5-turbo",
-    //   messages: [{role: "user", content: "Hello world"}],
-    // });
-    // console.log(chatCompletion.data.choices[0].message);
-    
-    // New
+  const srcLang = `${languages[userSrcLang].language}`
+  const srcLang2 = `${languages[userSrcLang].language2 || ""}`
+  const targetLang = `${languages[userTargetLang].language}`
+  const targetLang2 = `${languages[userTargetLang].language2 || ""}`
 
-const prompt2 = `List 10 words about this topic: ${prompt}`
-
-console.log('here')
-
-    const chatCompletion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{"role": "user", "content": prompt2}],
+  const chatCompletion = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    temperature: temperatureGPT,
+    max_tokens: 250,
+    messages: [
+      {
+          role: "system",
+          content: `I am ${srcLang2 || srcLang} and you are my ${
+            targetLang2 || targetLang
+          } language teacher`,
+        },
+        {"role": "user", "content": prompt}],
     });
-    console.log(chatCompletion.choices[0].message);
   
     return chatCompletion.choices[0].message
   }

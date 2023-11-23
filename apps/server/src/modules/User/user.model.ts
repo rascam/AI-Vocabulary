@@ -39,6 +39,25 @@ export async function getUserById (userId: string) {
   return user
 }
 
+
+export async function getUserBasicInfoById (userId: string) {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId
+    },
+    include: {
+      words: false
+    }
+  })
+
+  if (!user) {
+    throw new Error("User not found")
+  }
+
+  return user
+}
+
+
 export async function getHashByUserEmail (email: string): Promise<string> {
   const response = await prisma.user.findUnique({
     where: {

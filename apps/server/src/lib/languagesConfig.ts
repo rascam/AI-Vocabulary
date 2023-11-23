@@ -1,4 +1,16 @@
-export const languages = {
+export interface Language {
+  code: string
+  voice: string
+  language: string
+  language2?: string
+  goLearn: string
+}
+
+interface Languages {
+  [key: string]: Language
+}
+
+export const languages: Languages = {
   en: {
     code: "en-us",
     voice: "en-US-Wavenet-H",

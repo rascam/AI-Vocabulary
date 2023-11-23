@@ -1,11 +1,11 @@
 import prisma from "../../lib/prisma"
 
-export async function createWord(userId: string, topic: string) {
+export async function createWord(userId: string, srcWord: string, targetWord: string) {
   const createdWord = await prisma.word.create({
     data: {
       userId,
-      srcWord: topic,
-      targetWord: topic,
+      srcWord,
+      targetWord,
       imgUrl: "",
       credits: "Paul Platzhalter",
       voice: "",

@@ -25,7 +25,7 @@ export interface UserRegistrationBody {
 
 export interface UserCreation {
   email: string
-  name?: string
+  name?: string | null
   hashedPassword: string
   userSrcLang: string
   userTargetLang: string
