@@ -1,16 +1,21 @@
+import api from "../lib/api"
+import {User} from "../lib/types" 
 
 
-
-function Settings ({learningDirection, slowSpeech}: {learningDirection: string | undefined, slowSpeech: boolean | undefined}) {
+function Settings ({userId, learningDirection, slowSpeech, setUser}: { userId: string, learningDirection: string | undefined, slowSpeech: boolean | undefined, setUser: React.Dispatch<React.SetStateAction<User | null>>}) {
   
-  function handleToggleLearningDirection() {
+  async function handleToggleLearningDirection() {
+    let newDirection: string
     if (learningDirection === "targetToSrc") {
-      setLearningDirection("srcToTarget")
+      newDirection = "srcToTarget"
     } else {
-      setLearningDirection("targetToSrc")
+      newDirection = "targetToSrc"
     }
-
-    
+    const updatedUser =await api.patchUserProperty(userId, "learningDirection", newDirection)
+    if (updatedUser) {
+      setUser(updatedUser)
+      console.log({updatedUser})
+    }
   }
   
   return (

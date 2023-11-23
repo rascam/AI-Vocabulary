@@ -17,9 +17,6 @@ function App() {
   const [user, setUser] = useState<User | null>(null)
   const [words, setWords] = useState<Word[]>([])
 
-  // const [showStats, setShowStats] = useState(true)
-  // const [showVocList, setShowVocList] = useState(true)
-  // const [showSettings, setShowSettings] = useState(true)
   const [showElement, setShowElement] = useState({vocList: true, stats: true, settings: true, topicInput: true})
 
   console.log({loggedInUserId})
@@ -47,9 +44,9 @@ function App() {
       <StatusRow name={user?.name} showElement={showElement} setShowElement={setShowElement}/>
       <div className="flexContainer">
         {showElement.topicInput &&
-          <TopicInput userId={loggedInUserId} />}
+          <TopicInput userId={loggedInUserId} updateWords={(array) => setWords(array)}/>}
         {showElement.settings &&
-          <Settings learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech}/>}
+          <Settings userId={loggedInUserId} learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech} setUser={(user) => setUser(user)}/>}
         {showElement.stats && 
           <Statistics vocCount={user?.userVocCount || 0} score={user?.score || 0} />}
       </div>

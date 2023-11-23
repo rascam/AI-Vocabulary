@@ -16,13 +16,13 @@ const api = {
     }
   },
 
-  async patchSingleUserData(userId: string, key: string, data: string | number) {
+  async patchUserProperty(userId: string, key: string, value: string | number) {
     const response = await fetch(`${BASE_URL}users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({key, data})
+      body: JSON.stringify({key, value})
     })
     if (response.ok) {
       return await response.json()

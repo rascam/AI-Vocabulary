@@ -1,16 +1,22 @@
 import { useState } from "react"
 import React from "react"
+import { Word } from "../lib/types"
 import api from "../lib/api"
 
-function TopicInput ({userId}: {userId: string}) {
 
-  function submitHandler (e: React.FormEvent<HTMLButtonElement>, user: string, term: string) {
+function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.Dispatch<React.SetStateAction<Word[]>>}) {
+
+  const [topic, setTopic] = useState("")
+
+  async function submitHandler (e: React.FormEvent<HTMLButtonElement>, user: string, term: string) {
     e.preventDefault()
-    console.log(topic)
-    api.createWordsByTopic(user, term)
+    setTopic("")
+    await api.createWordsByTopic(user, term)
+    const wordArray = await api.getWordsByUserId(user)
+    if (wordArray) {
+      updateWords(wordArray)
+    }
   }
-
-const [topic, setTopic] = useState("")
 
   return (
     <div className="inputContainer" id="inputContainer">

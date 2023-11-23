@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react"
 import { DisplaySwitch } from "../lib/types"
 
-function StatusRow({name, showElement,setShowElement}:{name:string | undefined, showElement:DisplaySwitch, setShowElement:Dispatch<SetStateAction<DisplaySwitch>>}) {
+function StatusRow({name, showElement, setShowElement}:{name:string | undefined, showElement:DisplaySwitch, setShowElement:Dispatch<SetStateAction<DisplaySwitch>>}) {
   return (
     <div className="statusRow" id="statusRow">
       <h3 className="Welcome" id="welcome">Welcome
