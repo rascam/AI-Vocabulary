@@ -3,6 +3,7 @@ import { Word } from '../lib/types'
 
 function CardList({words}: {words: Word[]}) {
 
+  console.log({words})
   return (
     <div className="vocContainer">
       {words.map((word: Word) => (

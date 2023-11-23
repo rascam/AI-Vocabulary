@@ -9,7 +9,7 @@ export interface User {
   score: number
   learningDirection: string
   slowSpeech: boolean
-  words: Word[]
+  // words: Word[]
 }
 
 export interface Word {
