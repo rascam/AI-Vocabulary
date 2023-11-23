@@ -1,11 +1,15 @@
 import { compareHash, hashingPassword } from "../../modules/Encryption/encryption.model"
-import { userEmailExists , getUserBasicInfoById, getHashByUserEmail,createUser } from "../../modules/User/user.model"
+import { userEmailExists , getUserBasicInfoById, getHashByUserEmail,createUser, patchSingleUserProperty } from "../../modules/User/user.model"
 
 import { UserRegistrationBody } from "../../lib/types"
 
 
 export async function getUser(userId: string) {
   return getUserBasicInfoById(userId)
+}
+
+export async function updateUserProperty(userId: string, key: string, data: string | number) {
+  return patchSingleUserProperty(userId, key, data)
 }
 
 export async function registerUser(user: UserRegistrationBody) {

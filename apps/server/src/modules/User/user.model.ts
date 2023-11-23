@@ -57,6 +57,18 @@ export async function getUserBasicInfoById (userId: string) {
   return user
 }
 
+export async function patchSingleUserProperty(userId: string, key: string, value: string | number) {
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: userId
+    },
+    data: {
+      [key]: value
+    }
+  })
+  console.log ({updatedUser})
+  return updatedUser
+}
 
 export async function getHashByUserEmail (email: string): Promise<string> {
   const response = await prisma.user.findUnique({
