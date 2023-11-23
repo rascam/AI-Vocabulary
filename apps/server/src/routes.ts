@@ -36,7 +36,7 @@ server.get("/users/:id", async (req, res) => {
 server.patch("/users/:id", async (req, res) => {
   const userId = req.params.id;
   try {
-    if (!req.body.key || !req.body.value) {
+    if (!req.body.key || req.body.value === undefined) {
       res.status(400).json({ error: "Key or value not provided" });
       return
     }

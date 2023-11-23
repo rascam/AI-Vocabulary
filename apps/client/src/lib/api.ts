@@ -16,7 +16,7 @@ const api = {
     }
   },
 
-  async patchUserProperty(userId: string, key: string, value: string | number) {
+  async patchUserProperty(userId: string, key: string, value: string | number | boolean) {
     const response = await fetch(`${BASE_URL}users/${userId}`, {
       method: "PATCH",
       headers: {
