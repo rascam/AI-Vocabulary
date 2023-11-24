@@ -17,10 +17,12 @@ export interface Word {
   srcWord: string
   targetWord: string
   imgUrl: string
+  credits: string
+  creditsUrl: string
   voice: string
   voiceSlow: string
   bin: number
-  credits: string}
+  }
 
   export type DisplaySwitch = {
     settings: boolean

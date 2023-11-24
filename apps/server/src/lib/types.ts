@@ -37,8 +37,9 @@ export interface Word {
   // userId: string
   srcWord: string
   targetWord: string
-  imgUrl: string
-  credits: string
+  imgUrl: string | undefined
+  credits: string | undefined
+  creditsUrl: string | undefined
   voice: string
   voiceSlow: string
   bin: number
