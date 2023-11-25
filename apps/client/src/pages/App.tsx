@@ -51,7 +51,7 @@ function App() {
           <Statistics vocCount={words.length || 0} score={user?.score || 0} />}
       </div>
       {showElement.vocList && user &&
-        <CardList words={(words)} />}
+        <CardList words={(words)} slowSpeech={user.slowSpeech} />}
     </div>
   )
 }

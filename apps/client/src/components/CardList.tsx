@@ -1,7 +1,15 @@
 import { defaultImg } from '../lib/const'
 import { Word } from '../lib/types'
 
-function CardList({words}: {words: Word[]}) {
+
+
+function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
+
+  function playVoice(audioString: string) {
+    console.log({slowSpeech})
+    const audio = new Audio(`data:audio/mp3;base64,${audioString}`)
+    audio.play()
+  }
 
   console.log({words})
   return (
@@ -18,9 +26,7 @@ function CardList({words}: {words: Word[]}) {
             <p>{word.targetWord}</p>
           </div>
           <div className="playButton" id="playButton">
-          <i className="fa-solid fa-circle-play"></i>
-          <audio src={`data:audio/mp3;base64,${word.voice}`}>
-          </audio>
+          <i onClick={() => playVoice(slowSpeech ? word.voiceSlow : word.voice)} className="fa-solid fa-circle-play"></i>
           </div>
           <div className="credits" >
             <a href="https://unsplash.com" target="_blank">
