@@ -48,7 +48,7 @@ function App() {
         {showElement.settings &&
           <Settings userId={loggedInUserId} learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech} setUser={(user) => setUser(user)}/>}
         {showElement.stats && 
-          <Statistics vocCount={user?.userVocCount || 0} score={user?.score || 0} />}
+          <Statistics vocCount={words.length || 0} score={user?.score || 0} />}
       </div>
       {showElement.vocList && user &&
         <CardList words={(words)} />}
