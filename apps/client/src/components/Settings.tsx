@@ -37,7 +37,7 @@ function Settings ({userId, learningDirection, slowSpeech, setUser}: { userId: s
         </div>
         <span>Speech Speed:</span>
         <div id="toggleSpeechSpeed" className="flipswitch">
-          <input type="checkbox" name="flipswitch" className="flipswitch-cb" id="fs" checked={slowSpeech} />
+          <input type="checkbox" name="flipswitch" className="flipswitch-cb" id="fs" checked={!slowSpeech} />
           <label onClick={toggleSpeechSpeed} className="flipswitch-label" htmlFor="fs">
             <div className="flipswitch-inner"></div>
             <div className="flipswitch-switch"></div>
