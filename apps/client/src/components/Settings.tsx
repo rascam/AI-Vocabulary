@@ -14,7 +14,6 @@ function Settings ({userId, learningDirection, slowSpeech, setUser}: { userId: s
     const updatedUser = await api.patchUserProperty(userId, "learningDirection", newDirection)
     if (updatedUser) {
       setUser(updatedUser)
-      console.log({updatedUser})
     }
   }
 
@@ -22,7 +21,6 @@ function Settings ({userId, learningDirection, slowSpeech, setUser}: { userId: s
     const updatedUser = await api.patchUserProperty(userId, "slowSpeech", !slowSpeech)
     if (updatedUser) {
       setUser(updatedUser)
-      console.log({updatedUser})
     }
   }
   

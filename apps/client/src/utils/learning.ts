@@ -1,4 +1,4 @@
-import { Word } from "./types"
+import { Word } from "../lib/types"
 
 const learning = {
   

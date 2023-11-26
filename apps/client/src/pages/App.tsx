@@ -8,6 +8,8 @@ import TopicInput from '../components/TopicInput'
 import Statistics from '../components/Statistics'
 import StatusRow from '../components/StatusRow'
 import Settings from '../components/Settings'
+import LearnModule from '../components/LearnModule'
+
 
 import { testUser } from '../data/const'
 
@@ -47,6 +49,7 @@ function App() {
           <TopicInput userId={loggedInUserId} updateWords={(array) => setWords(array)}/>}
         {showElement.settings &&
           <Settings userId={loggedInUserId} learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech} setUser={(user) => setUser(user)}/>}
+        {user && <LearnModule words={(words)} slowSpeech={user.slowSpeech} />}
         {showElement.stats && 
           <Statistics vocCount={words.length || 0} score={user?.score || 0} />}
       </div>
