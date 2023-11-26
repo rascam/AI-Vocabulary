@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import api from '../lib/api'
-import '../App.css'
+import '../assets/App.css'
 import { User, Word } from '../lib/types'
 
 import CardList from '../components/CardList'
@@ -9,7 +9,7 @@ import Statistics from '../components/Statistics'
 import StatusRow from '../components/StatusRow'
 import Settings from '../components/Settings'
 
-import { testUser } from '../lib/const'
+import { testUser } from '../data/const'
 
 function App() {
 

@@ -1,21 +1,21 @@
+import { useEffect } from 'react'
 import { defaultImg } from '../data/const'
 import { Word } from '../lib/types'
 
 
+function LearnModule({words}: {words: Word[]}) {
 
-function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
+  const [learnStack, setLearnStack] = useState<Word[]>([])
 
-  function playVoice(audioString: string) {
-    console.log({slowSpeech})
-    const audio = new Audio(`data:audio/mp3;base64,${audioString}`)
-    audio.play()
-  }
+  useEffect(() => {
+
+    
+    
+    
+  }, [learnStack])
 
   return (
-    <div className="vocContainer">
-      {words.map((word: Word) => (
-        <div key={word.id} className={`card card${word.bin}`}
-          onClick={() => playVoice(slowSpeech ? word.voiceSlow : word.voice)}
+    <div  className={`card card${word.bin}`}
           style={{
           background: `linear-gradient(#19778d99, #19778d99), url(${word.imgUrl || defaultImg})`,
           backgroundSize: 'cover',
@@ -33,9 +33,7 @@ function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
             {word.credits} - Unsplash</a>
           </div>
         </div>
-      ))}
-    </div>
   )
 }
 
-export default CardList
+export default LearnModule
