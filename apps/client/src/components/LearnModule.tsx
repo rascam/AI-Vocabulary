@@ -32,7 +32,7 @@ function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) 
               </div>
             </div>
             <div className="credits">
-              <a href="https://unsplash.com" target="_blank">Emmanuel Ikwuegbu - Unsplash</a>
+              <a href="https://unsplash.com" target="_blank">{learnStack[0]?.credits} - Unsplash</a>
             </div>
           </div>
           <div className="cardBack" id="cardBack"
@@ -63,7 +63,7 @@ function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) 
               </div>
             </div>
             <div className="credits">
-              <a id="credits" href="https://unsplash.com" target="_blank">Emmanuel Ikwuegbu - Unsplash</a>
+              <a id="credits" href="https://unsplash.com" target="_blank">{learnStack[0]?.credits} - Unsplash</a>
             </div>
           </div>
         </div>
