@@ -1,15 +1,10 @@
 import { defaultImg } from '../data/const'
 import { Word } from '../lib/types'
+import playVoice from '../utils/playVoice'
 
 
 
 function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
-
-  function playVoice(audioString: string) {
-    console.log({slowSpeech})
-    const audio = new Audio(`data:audio/mp3;base64,${audioString}`)
-    audio.play()
-  }
 
   return (
     <div className="vocContainer">
