@@ -28,12 +28,10 @@ function App() {
       const userData = await api.getUserData(loggedInUserId)
       if (userData) {
         setUser(userData)
-        console.log({userData})
       }
       const wordArray = await api.getWordsByUserId(loggedInUserId)
       if (wordArray) {
         setWords(wordArray)
-        console.log({wordArray})
       }
     }
     getData()

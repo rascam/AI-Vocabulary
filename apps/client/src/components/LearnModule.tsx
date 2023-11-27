@@ -19,7 +19,7 @@ function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) 
         <div className={`content card${learnStack[0]?.bin}`} id="cardBorder">
           <div className="cardFront"
             style={{
-              background: `linear-gradient(#19778d99, #19778d99), url(${learnStack[0]?.imgUrl || defaultImg})`,
+              backgroundImage: `linear-gradient(#19778d99, #19778d99), url(${learnStack[0]?.imgUrl || defaultImg})`,
               backgroundSize: 'cover',
             }}>
             <div className="inner">
@@ -37,7 +37,7 @@ function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) 
           </div>
           <div className="cardBack" id="cardBack"
             style={{
-              background: `linear-gradient(#19778d99, #19778d99), url(${learnStack[0]?.imgUrl || defaultImg})`,
+              backgroundImage: `linear-gradient(#19778d99, #19778d99), url(${learnStack[0]?.imgUrl || defaultImg})`,
               backgroundSize: 'cover',
             }}>
             <div className="inner">
