@@ -14,6 +14,9 @@ function StatusRow({name, showElement, setShowElement}:{name:string | undefined,
           {/* <i className="fa-light fa-cards-blank"></i> */}
           <i className="fa-regular fa-file-lines" onClick={() => setShowElement({ ...showElement, vocList: !showElement.vocList})}></i>
         </label>
+        <label htmlFor="statsSwitch">
+          <i className="fa-solid fa-chart-pie" onClick={() => setShowElement({ ...showElement, stats: !showElement.stats})}></i>
+        </label>
         <label htmlFor="settingsSwitch">
           <i className="fa-solid fa-gear" onClick={() => setShowElement({ ...showElement, settings: !showElement.settings})}></i>
         </label>
