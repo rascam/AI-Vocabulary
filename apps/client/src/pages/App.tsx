@@ -21,8 +21,6 @@ function App() {
 
   const [showElement, setShowElement] = useState({vocList: true, stats: true, settings: true, topicInput: true})
 
-  console.log({loggedInUserId})
-
   useEffect(() => {
     async function getData() {
       const userData = await api.getUserData(loggedInUserId)

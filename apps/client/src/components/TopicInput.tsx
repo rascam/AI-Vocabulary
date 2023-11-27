@@ -8,7 +8,7 @@ function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.
 
   const [topic, setTopic] = useState("")
 
-  async function submitHandler (e: React.FormEvent<HTMLButtonElement>, user: string, term: string) {
+  async function submitHandler (e: React.FormEvent, user: string, term: string) {
     e.preventDefault()
     setTopic("")
     await api.createWordsByTopic(user, term)
