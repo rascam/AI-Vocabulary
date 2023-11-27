@@ -31,6 +31,7 @@ function App() {
       if (wordArray) {
         setWords(wordArray)
       }
+      setLoggedInUserId(loggedInUserId)
     }
     getData()
   }, [loggedInUserId])
