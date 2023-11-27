@@ -1,14 +1,9 @@
-# Turborepo starter
+# AI Vocabulary
 
-This is an official starter Turborepo.
+Create and learn the vocabulary you are really interested in.
+Over 40 languages supported.
 
-## Using this example
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
 
 ## What's inside?
 
