@@ -10,11 +10,11 @@
   "author": "Rasmus Sievers",
   "license": "MIT",
   "scripts": {
-    "lint": "tsc",
+    "lint": "",
     "dev": "yarn db:start && nodemon ./index.ts",
     "db:start": "docker compose up -d",
     "tsc": "tsc ./index.ts",
-    "build": "yarn tsc"
+    "build": "yarn run tsc --outDir dist --skipLibCheck --module commonjs --esModuleInterop true"
   },
   "prisma": {
     "seed": "node ./prisma/prismaSeed.mjs"
@@ -27,17 +27,18 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "openai": "^4.20.0",
-    "tsconfig-paths": "^4.2.0"
+    "openai": "^4.20.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.16",
     "@types/express": "^4.17.21",
     "@types/morgan": "^1.9.9",
+    "@types/node": "^20.10.1",
     "nodemon": "^3.0.1",
     "prisma": "^5.5.2",
     "ts-standard": "^12.0.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.2",
+    "tsconfig-paths": "^4.2.0"
   }
 }
