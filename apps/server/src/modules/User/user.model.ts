@@ -66,11 +66,15 @@ export async function patchSingleUserProperty(userId: string, key: string, value
       [key]: value
     }
   })
-  console.log ({updatedUser})
   return updatedUser
 }
 
-export async function getHashByUserEmail (email: string): Promise<string> {
+type HashAndId = {
+  hashedPassword: string
+  id: string
+}
+
+export async function getUserByEmail (email: string): Promise<HashAndId> {
   const response = await prisma.user.findUnique({
     where: {
       email
@@ -85,7 +89,7 @@ export async function getHashByUserEmail (email: string): Promise<string> {
     throw new Error("User not found")
   }
 
-  return response.hashedPassword
+  return { hashedPassword: response.hashedPassword, id: response.id }
 }
 
 export async function createUser(user: UserCreation) {

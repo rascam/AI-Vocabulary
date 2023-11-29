@@ -10,22 +10,25 @@
   "author": "Rasmus Sievers",
   "license": "MIT",
   "scripts": {
+    "lint": "tsc",
     "dev": "yarn db:start && nodemon ./index.ts",
     "db:start": "docker compose up -d",
-    "tsc": "tsc ./index.ts"
+    "tsc": "tsc ./index.ts",
+    "build": "yarn tsc"
   },
   "prisma": {
     "seed": "node ./prisma/prismaSeed.mjs"
   },
   "dependencies": {
-    "@prisma/client": "5.5.2",
     "@google-cloud/text-to-speech": "^4.2.3",
+    "@prisma/client": "5.5.2",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "openai": "^4.20.0"
+    "openai": "^4.20.0",
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

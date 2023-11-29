@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 dotenv.config()
 const PORT = process.env.PORT || 3000
 
-import { getUser, registerUser, updateUserProperty } from "./modules/User/user.controller"
+import { getUser, loginUser,registerUser, updateUserProperty } from "./modules/User/user.controller"
 import { createWordsByTopic, getWords } from "./modules/Word/word.controller"
 
 
@@ -30,6 +30,17 @@ server.get("/users/:id", async (req, res) => {
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: "An error occurred while fetching the user" });
+  }
+})
+
+server.post("/login", async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  try {
+    const userId = await loginUser(email, password);
+    res.json(userId);
+  } catch (error) {
+    res.status(400).json({ error: "An error occurred while logging in" });
   }
 })
 
@@ -73,8 +84,8 @@ server.post("/users/:id/topic", async (req, res) => {
 server.post("/users", async (req, res) => {
   const user = req.body;
   try {
-    const createdUser = await registerUser(user);
-    res.status(201).json(createdUser);
+    const createdUserId = await registerUser(user);
+    res.status(201).json(createdUserId);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred while creating the user" });

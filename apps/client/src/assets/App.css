@@ -70,7 +70,7 @@ a {
 }
 
 #initDialog {
-  display: none;
+  display: flex;
   position: relative;
   width: 90%;
   margin: 0 auto 10rem auto;
@@ -87,7 +87,7 @@ a {
 }
 
 #initUserData {
-  display: none;
+  display: flex;
 }
 
 #welcome {
