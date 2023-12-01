@@ -6,7 +6,10 @@ import learning from '../../utils/learning'
 import api from '../../lib/api'
 import {User} from '../../lib/types'
 
-function LearnModule({words, slowSpeech, userScore, userId, setUser}: {words: Word[], slowSpeech: boolean, userScore: number | undefined, userId: string, setUser: React.Dispatch<React.SetStateAction<User | null>>}) {
+function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBins}:
+  {words: Word[], slowSpeech: boolean, userScore: number | undefined, userId: string,
+    setUser: React.Dispatch<React.SetStateAction<User | null>>,
+    bins: number[], setBins: React.Dispatch<React.SetStateAction<number[]>>}) {
 
   const [learnStack, setLearnStack] = useState<Word[]>([])
   const [frontCard, setFrontCard] = useState<Word | null>(null)
@@ -30,6 +33,15 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser}: {words: Wo
           setUser(updatedUser)
         }
       }
+      if (backCard) {
+        if (backCard.bin) {
+          const updatedBins = [...bins]
+          updatedBins[backCard.bin] -= 1
+          updatedBins[backCard.bin+1] += 1
+          setBins(updatedBins)
+        }
+      }
+
       if (backCard) {
       if (backCard.bin < 4) {
         await api.patchWordProperty(parseInt(backCard.id), "bin", ( backCard.bin + 1))

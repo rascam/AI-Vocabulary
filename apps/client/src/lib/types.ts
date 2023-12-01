@@ -39,3 +39,4 @@ export interface Word {
     stats: boolean
     vocList: boolean
   }
+

@@ -10,6 +10,9 @@ import Statistics from './Statistics'
 import StatusRow from './StatusRow'
 import Settings from './Settings'
 import LearnModule from './LearnModule'
+import calculateBins from '../../utils/calculateBins'
+
+
 
 
 function App() {
@@ -19,6 +22,7 @@ function App() {
   const [loggedInUserId, setLoggedInUserId] = useState<string | undefined>(undefined)
   const [user, setUser] = useState<User | null>(null)
   const [words, setWords] = useState<Word[]>([])
+  const [bins, setBins] = useState([0, 0, 0, 0, 0])
 
   const [showElement, setShowElement] = useState({vocList: true, stats: true, settings: true, topicInput: true})
 
@@ -43,6 +47,11 @@ function App() {
         setWords(wordArray)
       }
       setLoggedInUserId(userId)
+
+      if (wordArray) {
+        setBins(calculateBins(wordArray))
+      }
+      
     }
     loginAndGetData()
   }, [userId, loggedInUserId, navigate])
@@ -57,9 +66,9 @@ function App() {
           <TopicInput userId={loggedInUserId} updateWords={(array) => setWords(array)}/>}
         {showElement.settings && loggedInUserId &&
           <Settings userId={loggedInUserId} learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech} setUser={(user) => setUser(user)}/>}
-        {loggedInUserId && user && <LearnModule userId={loggedInUserId} words={(words)} slowSpeech={user.slowSpeech} userScore={user.score} setUser={(user) => setUser(user)} />}
+        {loggedInUserId && user && <LearnModule userId={loggedInUserId} words={(words)} slowSpeech={user.slowSpeech} userScore={user.score} setUser={(user) => setUser(user)} bins={bins} setBins={(bins) => setBins(bins)} />}
         {showElement.stats && loggedInUserId &&
-          <Statistics vocCount={words.length || 0} score={user?.score || 0} />}
+          <Statistics vocCount={words.length || 0} score={user?.score || 0} bins={bins}/>}
       </div>
       {showElement.vocList && user &&
         <CardList words={(words)} slowSpeech={user.slowSpeech} />}

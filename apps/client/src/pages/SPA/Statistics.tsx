@@ -1,4 +1,4 @@
-function Statistics( {vocCount, score}: {vocCount: number, score: number}) {
+function Statistics( {vocCount, score, bins}: {vocCount: number, score: number, bins: number[]}) {
 
   function generateScoreStars(score: number) {
     const emptyStar = <i className="fa-regular fa-star"></i>
@@ -24,7 +24,7 @@ function Statistics( {vocCount, score}: {vocCount: number, score: number}) {
                 <p id="learnedCount">0 learned</p>
               </div>
               <div className="totalCount">
-                <p id="totalCount">{vocCount}</p>
+                <p id="totalCount">{vocCount}{bins}</p>
               </div>
               <div className="newCount">
                 <p id="newCount">6 new</p>
