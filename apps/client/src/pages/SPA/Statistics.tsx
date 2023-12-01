@@ -21,13 +21,13 @@ function Statistics( {vocCount, score, bins}: {vocCount: number, score: number, 
           <div className="hole">
             <div className="vocCount">
               <div className="learnedCount">
-                <p id="learnedCount">0 learned</p>
+                <p id="learnedCount">{bins[4]} learned</p>
               </div>
               <div className="totalCount">
                 <p id="totalCount">{vocCount}{bins}</p>
               </div>
               <div className="newCount">
-                <p id="newCount">6 new</p>
+                <p id="newCount">{bins[0]} new</p>
               </div>
             </div>
           </div>
