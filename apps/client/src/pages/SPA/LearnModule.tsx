@@ -8,45 +8,65 @@ import learning from '../../utils/learning'
 function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
 
   const [learnStack, setLearnStack] = useState<Word[]>([])
+  const [frontCard, setFrontCard] = useState<Word | null>(null)
+  const [backCard, setBackCard] = useState<Word | null>(null)
 
   useEffect(() => {
     setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
+    if (learnStack.length > 0) {
+      setFrontCard(learnStack[0])
+      setBackCard(learnStack[0])
+    } 
   }, [words])
+
+  function handleCorrectGuess() {
+    if (learnStack.length === 0) {
+      setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
+    } else {
+      setLearnStack(learnStack.slice(1))
+    }
+  }
+  function handleWrongGuess(){
+    if (learnStack.length === 0) {
+      setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
+    } else {
+      setLearnStack(learnStack.slice(1))
+    }
+  }
 
   return (
     <div className="flipCard">
         <input type="checkbox" id="flipCard" className="check" aria-hidden="true" />
-        <div className={`content card${learnStack[0]?.bin}`} id="cardBorder">
+        <div className={`content ${`card${frontCard?.bin}` || 'card0'}`} id="cardBorder">
           <div className="cardFront"
             style={{
-              backgroundImage: `linear-gradient(#19778d99, #19778d99), url(${learnStack[0]?.imgUrl || defaultImg})`,
+              backgroundImage: `linear-gradient(#19778d99, #19778d99), url(${frontCard?.imgUrl || defaultImg})`,
               backgroundSize: 'cover',
             }}>
             <div className="inner">
-
-              <p id="cardFrontUpper" className="bold">{learnStack[0]?.srcWord}</p>
-              <div className="yesNo">
+              <p id="cardFrontUpper" className="bold">{frontCard?.srcWord || 'No vocabulary to learn.'}</p>
+              {learnStack.length > 0 && <div className="yesNo">
                 <label htmlFor="flipCard" className="buttonFlipCard" aria-hidden="true">
                   <i className="fa-regular fa-circle-question fa-2xl"></i>
                 </label>
-              </div>
+              </div>}
             </div>
-            <div className="credits">
-              <a href="https://unsplash.com" target="_blank">{learnStack[0]?.credits} - Unsplash</a>
-            </div>
+            {learnStack.length > 0 && <div className="credits">
+              <a href="https://unsplash.com" target="_blank">{frontCard?.credits} - Unsplash</a>
+            </div>}
           </div>
+          {learnStack.length > 0 && 
           <div className="cardBack" id="cardBack"
             style={{
-              backgroundImage: `linear-gradient(#19778d99, #19778d99), url(${learnStack[0]?.imgUrl || defaultImg})`,
+              backgroundImage: `linear-gradient(#19778d99, #19778d99), url(${backCard?.imgUrl || defaultImg})`,
               backgroundSize: 'cover',
             }}>
             <div className="inner">
-              <p className='thin' id="cardBackUpper">{learnStack[0]?.srcWord}</p>
+              <p className='thin' id="cardBackUpper">{backCard?.srcWord}</p>
               <div className="thinLine"></div>
               <div className="bold">
-                <p id="cardBackLower">{learnStack[0]?.targetWord}</p>
+                <p id="cardBackLower">{backCard?.targetWord}</p>
               </div>
-
               <div onClick={() => playVoice(slowSpeech ? learnStack[0].voiceSlow : learnStack[0].voice)} className="playButton" id="playButtonLearn">
                 <i className="fa-solid fa-circle-play"></i>
                 <audio
@@ -55,17 +75,17 @@ function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) 
               </div>
               <div className="yesNo">
                 <div className="buttonYesNo buttonYes" id="buttonYes">
-                  <i className="fa-regular fa-circle-check fa-2xl"></i>
+                  <i onClick={handleCorrectGuess} className="fa-regular fa-circle-check fa-2xl"></i>
                 </div>
                 <div className="buttonYesNo buttonNo" id="buttonNo">
-                  <i className="fa-regular fa-circle-xmark fa-2xl"></i>
+                  <i  onClick={handleWrongGuess} className="fa-regular fa-circle-xmark fa-2xl"></i>
                 </div>
               </div>
             </div>
             <div className="credits">
-              <a id="credits" href="https://unsplash.com" target="_blank">{learnStack[0]?.credits} - Unsplash</a>
+              <a id="credits" href="https://unsplash.com" target="_blank">{backCard?.credits} - Unsplash</a>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
   )
