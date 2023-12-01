@@ -52,8 +52,13 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser}: {words: Wo
     }
     console.log({frontCard})
   }
-  function handleWrongGuess(){
+  async function handleWrongGuess(){
     console.log({learnStack})
+    if (backCard) {
+      if (backCard.bin > 0) {
+        await api.patchWordProperty(parseInt(backCard.id), "bin", ( backCard.bin - 1))
+        }
+      }
     if (learnStack.length <= 1) {
       setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
       setFrontCard(learnStack[0])
