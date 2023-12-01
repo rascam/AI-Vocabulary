@@ -34,7 +34,7 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
         }
       }
       if (backCard) {
-        if (backCard.bin) {
+        if (backCard.bin !== undefined) {
           const updatedBins = [...bins]
           updatedBins[backCard.bin] -= 1
           updatedBins[backCard.bin+1] += 1
