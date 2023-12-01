@@ -10,33 +10,58 @@ function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) 
   const [learnStack, setLearnStack] = useState<Word[]>([])
   const [frontCard, setFrontCard] = useState<Word | null>(null)
   const [backCard, setBackCard] = useState<Word | null>(null)
+  const [isFlipped, setIsFlipped] = useState(false)
 
   useEffect(() => {
     setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
-    if (learnStack.length > 0) {
+    if (learnStack.length > 0) { 
       setFrontCard(learnStack[0])
       setBackCard(learnStack[0])
-    } 
+    }
+    console.log({frontCard})
   }, [words])
 
   function handleCorrectGuess() {
-    if (learnStack.length === 0) {
+    console.log({learnStack})
+    if (learnStack.length <= 1) {
       setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
+      setFrontCard(learnStack[0])
+      setIsFlipped(false)
+      setTimeout(() => {
+        setBackCard(learnStack[0])
+      } , 1000)
     } else {
-      setLearnStack(learnStack.slice(1))
+      setLearnStack((prev) => prev.slice(1))
+      setFrontCard(learnStack[0])
+      setIsFlipped(false)
+      setTimeout(() => {
+        setBackCard(learnStack[0])
+      } , 1000)
     }
+    console.log({frontCard})
   }
   function handleWrongGuess(){
-    if (learnStack.length === 0) {
+    console.log({learnStack})
+    if (learnStack.length <= 1) {
       setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
+      setFrontCard(learnStack[0])
+      setIsFlipped(false)
+      setTimeout(() => {
+        setBackCard(learnStack[0])
+      } , 1000)
     } else {
-      setLearnStack(learnStack.slice(1))
+      setLearnStack((prev) => prev.slice(1))
+      setFrontCard(learnStack[0])
+      setIsFlipped(false)
+      setTimeout(() => {
+        setBackCard(learnStack[0])
+      } , 1000)
     }
   }
 
   return (
     <div className="flipCard">
-        <input type="checkbox" id="flipCard" className="check" aria-hidden="true" />
+        <input type="checkbox" id="flipCard" className="check" aria-hidden="true" checked={isFlipped} onChange={() => setIsFlipped(!isFlipped)}/>
         <div className={`content ${`card${frontCard?.bin}` || 'card0'}`} id="cardBorder">
           <div className="cardFront"
             style={{
