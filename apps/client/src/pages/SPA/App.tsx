@@ -57,7 +57,7 @@ function App() {
           <TopicInput userId={loggedInUserId} updateWords={(array) => setWords(array)}/>}
         {showElement.settings && loggedInUserId &&
           <Settings userId={loggedInUserId} learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech} setUser={(user) => setUser(user)}/>}
-        {user && <LearnModule words={(words)} slowSpeech={user.slowSpeech} />}
+        {loggedInUserId && user && <LearnModule userId={loggedInUserId} words={(words)} slowSpeech={user.slowSpeech} userScore={user.score} setUser={(user) => setUser(user)} />}
         {showElement.stats && loggedInUserId &&
           <Statistics vocCount={words.length || 0} score={user?.score || 0} />}
       </div>

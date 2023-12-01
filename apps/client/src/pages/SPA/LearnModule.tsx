@@ -3,9 +3,10 @@ import { defaultImg } from '../../data/const'
 import { Word } from '../../lib/types'
 import playVoice from '../../utils/playVoice'
 import learning from '../../utils/learning'
+import api from '../../lib/api'
+import {User} from '../../lib/types'
 
-
-function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
+function LearnModule({words, slowSpeech, userScore, userId, setUser}: {words: Word[], slowSpeech: boolean, userScore: number | undefined, userId: string, setUser: React.Dispatch<React.SetStateAction<User | null>>}) {
 
   const [learnStack, setLearnStack] = useState<Word[]>([])
   const [frontCard, setFrontCard] = useState<Word | null>(null)
@@ -21,9 +22,15 @@ function LearnModule({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) 
     console.log({frontCard})
   }, [words])
 
-  function handleCorrectGuess() {
-    console.log({learnStack})
-    if (learnStack.length <= 1) {
+  async function handleCorrectGuess() {
+    console.log({learnStack, userScore})
+      if (userScore) {
+      const updatedUser = await api.patchUserProperty(userId, "score", (userScore + 1))
+        if (updatedUser) {
+          setUser(updatedUser)
+        }
+      }
+      if (learnStack.length <= 1) {
       setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
       setFrontCard(learnStack[0])
       setIsFlipped(false)
