@@ -54,7 +54,7 @@ const api = {
   },
 
   async patchUserProperty(userId: string, key: string, value: string | number | boolean) {
-    console.log('here',{userId, key, value})
+
     const response = await fetch(`${BASE_URL}users/${userId}`, {
       method: "PATCH",
       headers: {

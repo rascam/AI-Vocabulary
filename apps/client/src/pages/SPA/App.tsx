@@ -18,13 +18,13 @@ import calculateBins from '../../utils/calculateBins'
 function App() {
   const navigate = useNavigate()
   const { userId } = useParams()
-  console.log({userId})
+
   const [loggedInUserId, setLoggedInUserId] = useState<string | undefined>(undefined)
   const [user, setUser] = useState<User | null>(null)
   const [words, setWords] = useState<Word[]>([])
   const [bins, setBins] = useState([0, 0, 0, 0, 0])
 
-  const [showElement, setShowElement] = useState({vocList: true, stats: true, settings: true, topicInput: true})
+  const [showElement, setShowElement] = useState({vocList: false, stats: true, settings: false, topicInput: true})
 
   useEffect(() => {
     async function loginAndGetData() {
@@ -34,11 +34,11 @@ function App() {
       }
       const userData = await api.getUserData(userId)
       if (userData) {
-        console.log({userData})
+   
         setUser(userData)
         setLoggedInUserId(userId)
       } else {
-        console.log({userData})
+
         navigate('/')
         return
       }
@@ -55,6 +55,10 @@ function App() {
     }
     loginAndGetData()
   }, [userId, loggedInUserId, navigate])
+
+  useEffect(() => {
+    setBins(calculateBins(words))
+  }, [words])
 
 
   return (
