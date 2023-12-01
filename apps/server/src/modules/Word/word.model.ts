@@ -11,7 +11,6 @@ export async function getWordsByUserId (userId: string) {
   if (!words) {
     throw new Error("No words could be retrieved")
   }
-
   return words
 }
 
@@ -39,14 +38,22 @@ export async function createWord(wordToCreate: WordToCreate) {
       voiceSlow: wordToCreate.voiceSlow,
       bin: 0
     }
-
   })
-
   if (!createdWord) {
       throw new Error("DB Error; Word not created")
   }
-
   return createdWord
 }
 
+export async function patchSingleWordProperty(wordId: number, key: string, value: string | number) {
+  const updatedUser = await prisma.word.update({
+    where: {
+      id: wordId
+    },
+    data: {
+      [key]: value
+    }
+  })
+  return updatedUser
+}
 

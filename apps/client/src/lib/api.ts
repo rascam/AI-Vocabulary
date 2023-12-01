@@ -78,7 +78,21 @@ const api = {
     if (response.ok) {
       return await response.json()
     }
-  }
+  },
+
+  async patchWordProperty(wordId: number, key: string, value: string | number) {
+    const response = await fetch(`${BASE_URL}words/${wordId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({key, value})
+    })
+  
+    if (response.ok) {
+      return await response.json()
+    }
+  },
 }
 
 export default api

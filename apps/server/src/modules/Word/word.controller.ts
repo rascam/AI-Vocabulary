@@ -1,5 +1,5 @@
 import { getUserById } from "../User/user.model"
-import { createWord, getWordsByUserId } from "./word.model"
+import { createWord, getWordsByUserId, patchSingleWordProperty } from "./word.model"
 import { Word, User } from '../../lib/types'
 import { createWordListByTopic } from "../ChatGPT/chatGPT.controller"
 import { speakingRateNormal, speakingRateSlow } from "../../lib/const"
@@ -10,6 +10,10 @@ import { getImageByKeyword } from "../Image/image.model"
 
 export async function getWords(userId: string) {
   return getWordsByUserId(userId)
+}
+
+export async function updateWordProperty(wordId: number, key: string, data: string | number) {
+  return patchSingleWordProperty(wordId, key, data)
 }
 
 export async function createWordsByTopic(userId: string, topic: string) {

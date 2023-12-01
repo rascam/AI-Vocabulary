@@ -6,8 +6,7 @@ dotenv.config()
 const PORT = process.env.PORT || 3000
 
 import { getUser, loginUser,registerUser, updateUserProperty } from "./modules/User/user.controller"
-import { createWordsByTopic, getWords } from "./modules/Word/word.controller"
-
+import { createWordsByTopic, getWords, updateWordProperty } from "./modules/Word/word.controller"
 
 
 // Middleware
@@ -66,6 +65,22 @@ server.get("/users/:id/words", async (req, res) => {
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: "An error occurred while fetching the user" });
+  }
+})
+
+
+server.patch("/words/:wordId", async (req, res) => {
+  const wordId = parseInt(req.params.wordId)
+  try {
+    if (!req.body.key || req.body.value === undefined) {
+      res.status(400).json({ error: "Key or value not provided" });
+      return
+    }
+
+    const word = await updateWordProperty(wordId, req.body.key, req.body.value);
+    res.json(word);
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred updating a user property" });
   }
 })
 
