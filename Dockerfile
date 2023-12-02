@@ -1,4 +1,4 @@
-FROM node:18 as builder
+FROM node:18-alpine as builder
 
 WORKDIR /app
 
@@ -24,4 +24,6 @@ COPY --from=builder /app/apps/server/dist ./
 COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 8080
+
+CMD ["node", "index.js"]
 
