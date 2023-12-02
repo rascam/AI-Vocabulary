@@ -10,6 +10,8 @@ function Statistics( {vocCount, score, bins}: {vocCount: number, score: number, 
     for ( let i = 0; i < 4; i++) {
       if (i > 0) {
         calculateDegrees[i] = calculateDegrees[i-1]
+      } else {
+        calculateDegrees[i] = -2
       }
       calculateDegrees[i] += ((280/vocCount)*bins[i])+4
     }
@@ -34,7 +36,7 @@ function Statistics( {vocCount, score, bins}: {vocCount: number, score: number, 
 
   return (
     <div className="statistics">
-      <h2 className="text-lg text-left mt-7 mb-3">Make your rainbow greeen!</h2>
+      <h2 className="text-lg text-left mb-3">Make your rainbow greeen!</h2>
         <div className="donutChart" style={{background: `conic-gradient(
           #ce3737 0deg ${binDegrees[0]}deg,
           #023047 ${binDegrees[0] + 1}deg ${binDegrees[0] + 2}deg,

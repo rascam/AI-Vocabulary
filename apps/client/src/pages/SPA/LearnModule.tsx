@@ -21,14 +21,6 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
   }, [words])
 
 
-  // useEffect(() => {
-  //   if (learnStack.length) {
-  //     setFrontCard(learnStack[0])
-  //     setBackCard(learnStack[0])
-  //   }
-  // }, [learnStack])
-
-
   useEffect(() => {
     if (learnStack.length > 0) {
       setFrontCard(learnStack[0])
@@ -45,43 +37,38 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
         }
       }
       if (backCard) {
-        if (backCard.bin !== undefined) {
+          if (backCard.bin < 4) {
           const updatedBins = [...bins]
           updatedBins[backCard.bin] -= 1
           updatedBins[backCard.bin+1] += 1
+          console.log({updatedBins})
           setBins(updatedBins)
+          await api.patchWordProperty(parseInt(backCard.id), "bin", ( backCard.bin + 1))
         }
       }
 
-      if (backCard) {
-      if (backCard.bin < 4) {
-        await api.patchWordProperty(parseInt(backCard.id), "bin", ( backCard.bin + 1))
-        }
-      }
       if (learnStack.length <= 1) {
-      setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
-      setFrontCard(learnStack[0])
-      setIsFlipped(false)
-      setTimeout(() => {
-        setBackCard(learnStack[0])
-      } , 1000)
+        setFrontCard(null)
+        setIsFlipped(false)
+        setTimeout(() => {
+          setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
+        // setBackCard(learnStack[0])
+        } , 1200)
       } else {
-      const newCard = {...learnStack[1]}
-      setFrontCard(newCard)
-      setIsFlipped(false)
-      setTimeout(() => {
-        setBackCard(newCard)
-        setLearnStack(learnStack.slice(1))
-      } , 1000)
-    }
-    setTimeout(() => {
-      console.log(2, {learnStack, frontCard, backCard})
-    }, 1000)
+        const newCard = {...learnStack[1]}
+        setFrontCard(newCard)
+        setIsFlipped(false)
+        setTimeout(() => {
+          setLearnStack(learnStack.slice(1))
+        // setBackCard(newCard)
+        } , 1200)
+      }
+    console.log(2, {learnStack, frontCard, backCard})
   }
 
   async function handleWrongGuess(){
     if (backCard) {
-      if (backCard.bin !== undefined && backCard.bin > 0) {
+      if (backCard.bin > 0) {
         const updatedBins = [...bins]
         updatedBins[backCard.bin] -= 1
         updatedBins[backCard.bin-1] += 1
@@ -91,18 +78,19 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
     }
 
     if (learnStack.length <= 1) {
-      setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
-      setFrontCard(learnStack[0])
-      setIsFlipped(false)
-      setTimeout(() => {
-        setBackCard(learnStack[0])
-      } , 1200)
+      setFrontCard(null)
+        setIsFlipped(false)
+        setTimeout(() => {
+          setLearnStack(learning.initLearnStack(words.filter((word: Word) => word.bin < 4)))
+        // setBackCard(learnStack[0])
+        } , 1200)
     } else {
-      setLearnStack((prev) => prev.slice(1))
-      setFrontCard(learnStack[0])
+      const newCard = {...learnStack[1]}
+      setFrontCard(newCard)
       setIsFlipped(false)
       setTimeout(() => {
-        setBackCard(learnStack[0])
+        setLearnStack(learnStack.slice(1))
+        // setBackCard(newCard)
       } , 1200)
     }
   }
@@ -112,7 +100,6 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
       playVoice(slowSpeech ? backCard.voiceSlow : backCard.voice)
     }
   }
-
 
   return (
     <div className="flipCard">
