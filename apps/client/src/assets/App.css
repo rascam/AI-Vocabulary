@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+input::placeholder {
+  color: rgb(0, 0, 0);
+  opacity: 0.5; /* Firefox */
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -128,7 +133,7 @@ a {
   cursor: pointer;
 }
 .button:hover {
-  background-color: #fff;
+  background-color: #fb8500;
 }
 
 .button-small {

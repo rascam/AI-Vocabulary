@@ -31,11 +31,11 @@ function Register() {
   }
 
   return (
-    <div className="initDialog flex-col" id="initDialog">
+    <div className="initDialog flex-col items-center" id="initDialog">
       <h2 className="welcome" id="welcomeInitBox">Welcome!</h2>
       <form className="flex-col" id="initUserData"  onSubmit={submitHandler} action="#">
       <h2 className="text-lg text-left mt-7">Which is your native language?</h2>
-        <select id="input-initSrcLang" name="srcLang" value={srcLang} onChange={(e) => setSrcLang(e.target.value)}>
+        <select className="max-w-md" id="input-initSrcLang" name="srcLang" value={srcLang} onChange={(e) => setSrcLang(e.target.value)}>
           <option disabled selected value="">Your language</option>
           <option value="en">English</option>
           <option value="es">Español</option>
@@ -52,7 +52,7 @@ function Register() {
           <option value="ar">العربية / Arabic</option>
         </select>
         <h2 className="text-lg text-left mt-7">Which language do you like to learn?</h2>
-        <select id="input-initTargetLang" name="targetLang" value={targetLang} onChange={(e) => setTargetLang(e.target.value)}>
+        <select className="max-w-md" id="input-initTargetLang" name="targetLang" value={targetLang} onChange={(e) => setTargetLang(e.target.value)}>
           <option disabled value="">Language to learn</option>
           <option disabled value="xy">- high confidence -</option>
           <option value="en">English</option>
@@ -93,20 +93,20 @@ function Register() {
         </select>
         {/* <label htmlFor="input-initLevel">Your language level?</label> */}
         <h2 className="text-lg text-left mt-7">And your learning level?</h2>
-        <select id="input-initLevel" name="level" value={level} onChange={(e) => setLevel(e.target.value)}>
+        <select className="max-w-md" id="input-initLevel" name="level" value={level} onChange={(e) => setLevel(e.target.value)}>
           {/* <option disabled selected value={level}>Choose a level</option> */}
           <option value="beginner">Beginner</option>
           <option value="sophisticated">Advanced</option>
         </select>
         <h2 className="text-lg text-left mt-7">And now to you!</h2>
-        <input type="text" className="inputfield initDialogInput mt-2 mb-2" id='input-initName' name="name"
+        <input type="text" className="inputfield initDialogInput mt-2 mb-2 max-w-md" id='input-initName' name="name"
           placeholder="your name (optional)" value={name} onChange={(e) => setName(e.target.value)}/>
-       <input type="text" className="inputfield initDialogInput mb-2" id='input-initEmail' name="email"
+       <input type="text" className="inputfield initDialogInput mb-2 max-w-md" id='input-initEmail' name="email"
           placeholder="your email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-        <input type="text" className="inputfield initDialogInput mb-10" id='input-initEmail' name="email"
+        <input type="text" className="inputfield initDialogInput mb-10 max-w-md" id='input-initEmail' name="email"
           placeholder="superstrong password" value={password} onChange={(e) => setPassword(e.target.value)}/>
         {errorMessage && <ErrorMessage text={errorMessage} />}
-        <button type="submit" className='button' id="button-initUserData">Create account</button>
+        <button type="submit" className='button max-w-md' id="button-initUserData">Create account</button>
       </form>
     </div>
   )
