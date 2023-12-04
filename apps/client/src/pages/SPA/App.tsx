@@ -13,8 +13,6 @@ import LearnModule from './LearnModule'
 import calculateBins from '../../utils/calculateBins'
 
 
-
-
 function App() {
   const navigate = useNavigate()
   const { userId } = useParams()

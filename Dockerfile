@@ -10,12 +10,12 @@ COPY apps/server/package.json ./apps/server/package.json
 RUN yarn
 
 COPY /apps/server/prisma ./prisma/
+RUN yarn prisma generate
 COPY . .
 
 RUN yarn build --filter=server
 RUN rm -rf node_modules
 RUN yarn --frozen-lockfile --prod
-RUN cd apps/server && yarn prisma generate
 
 
 FROM node:18-alpine
