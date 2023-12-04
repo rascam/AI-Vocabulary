@@ -1,7 +1,7 @@
 import { getUserById } from "../User/user.model"
 import { createWord, getWordsByUserId, patchSingleWordProperty } from "./word.model"
 import { Word, User } from '../../lib/types'
-import { createWordListByTopic } from "../ChatGPT/chatGPT.controller"
+import { createWordListByTopic, createSingleTranslation } from "../ChatGPT/chatGPT.controller"
 import { speakingRateNormal, speakingRateSlow } from "../../lib/const"
 import { getGoogleVoice } from "../Speech/speech.model"
 import { languages } from "../../lib/languagesConfig"
@@ -52,5 +52,43 @@ export async function createWordsByTopic(userId: string, topic: string) {
   }
   return createdWords
 }
+
+export async function createSingleWordByTerm(userId: string, term: string) {
+  const user = await getUserById(userId) as User
+  if (!user) {
+      throw new Error("User doesn't exist")
+  }
+  if (term === "") {
+    throw new Error("Term can't be empty")
+  }
+
+  const generatedSingleTerm = await createSingleTranslation(user, term)
+
+  
+  const language = user.userTargetLang
+  const selectedVoice = languages[language].voice
+
+    const voice = await getGoogleVoice(generatedSingleTerm[1], language, selectedVoice ,speakingRateNormal)
+    const voiceSlow = await getGoogleVoice(generatedSingleTerm[1], language, selectedVoice ,speakingRateSlow)
+    const image = await getImageByKeyword(generatedSingleTerm[0])
+   
+    const wordToCreate = {
+      userId,
+      srcWord: generatedSingleTerm[0],
+      targetWord: generatedSingleTerm[1],
+      imgUrl: image?.imgUrl,
+      credits: image?.credits,
+      creditsUrl: image?.creditsUrl,
+      voice,
+      voiceSlow
+    }
+
+    const createdWord = await createWord(wordToCreate)
+ 
+  
+  return [createdWord]
+}
+
+
 
 

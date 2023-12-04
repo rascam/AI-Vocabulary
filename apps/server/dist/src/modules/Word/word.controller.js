@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createWordsByTopic = exports.getWords = void 0;
+exports.createSingleWordByTerm = exports.createWordsByTopic = exports.updateWordProperty = exports.getWords = void 0;
 var user_model_1 = require("../User/user.model");
 var word_model_1 = require("./word.model");
 var chatGPT_controller_1 = require("../ChatGPT/chatGPT.controller");
@@ -52,6 +52,14 @@ function getWords(userId) {
     });
 }
 exports.getWords = getWords;
+function updateWordProperty(wordId, key, data) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, (0, word_model_1.patchSingleWordProperty)(wordId, key, data)];
+        });
+    });
+}
+exports.updateWordProperty = updateWordProperty;
 function createWordsByTopic(userId, topic) {
     return __awaiter(this, void 0, void 0, function () {
         var user, generatedWordPairs, createdWords, language, selectedVoice, i, voice, voiceSlow, image, wordToCreate, createdWord;
@@ -109,3 +117,51 @@ function createWordsByTopic(userId, topic) {
     });
 }
 exports.createWordsByTopic = createWordsByTopic;
+function createSingleWordByTerm(userId, term) {
+    return __awaiter(this, void 0, void 0, function () {
+        var user, generatedSingleTerm, createdWords, language, selectedVoice, voice, voiceSlow, image, wordToCreate, createdWord;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, user_model_1.getUserById)(userId)];
+                case 1:
+                    user = _a.sent();
+                    if (!user) {
+                        throw new Error("User doesn't exist");
+                    }
+                    if (term === "") {
+                        throw new Error("Topic can't be empty");
+                    }
+                    return [4 /*yield*/, (0, chatGPT_controller_1.createWordListByTopic)(user, topic)];
+                case 2:
+                    generatedSingleTerm = _a.sent();
+                    createdWords = [];
+                    language = user.userTargetLang;
+                    selectedVoice = languagesConfig_1.languages[language].voice;
+                    return [4 /*yield*/, (0, speech_model_1.getGoogleVoice)(generatedSingleTerm[1], language, selectedVoice, const_1.speakingRateNormal)];
+                case 3:
+                    voice = _a.sent();
+                    return [4 /*yield*/, (0, speech_model_1.getGoogleVoice)(generatedSingleTerm[1], language, selectedVoice, const_1.speakingRateSlow)];
+                case 4:
+                    voiceSlow = _a.sent();
+                    return [4 /*yield*/, (0, image_model_1.getImageByKeyword)(generatedSingleTerm[0])];
+                case 5:
+                    image = _a.sent();
+                    wordToCreate = {
+                        userId: userId,
+                        srcWord: generatedSingleTerm[0],
+                        targetWord: generatedSingleTerm[1],
+                        imgUrl: image === null || image === void 0 ? void 0 : image.imgUrl,
+                        credits: image === null || image === void 0 ? void 0 : image.credits,
+                        creditsUrl: image === null || image === void 0 ? void 0 : image.creditsUrl,
+                        voice: voice,
+                        voiceSlow: voiceSlow
+                    };
+                    return [4 /*yield*/, (0, word_model_1.createWord)(wordToCreate)];
+                case 6:
+                    createdWord = _a.sent();
+                    return [2 /*return*/, [createdWord]];
+            }
+        });
+    });
+}
+exports.createSingleWordByTerm = createSingleWordByTerm;

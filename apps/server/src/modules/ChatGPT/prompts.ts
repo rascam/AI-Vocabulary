@@ -32,3 +32,23 @@ let prompt = ""
 
   return prompt
 }
+
+export function createPromptForSingleTranslation(user: User, term: string): string {
+  let prompt = ""
+  
+    const srcLang = `${languages[user.userSrcLang].language}`
+    const srcLang2 = `${languages[user.userSrcLang].language2 || ""}`
+    const targetLang = `${languages[user.userTargetLang].language}`
+    const targetLang2 = `${languages[user.userTargetLang].language2 || ""}`
+    
+    prompt += `Please translate the  ${srcLang2 || srcLang} expression\n
+    "${term}"\n
+    into ${
+      targetLang2 || ""
+    } ${targetLang}. ONLY answer with the pure translation.\n\n`
+  
+    return prompt
+  }
+
+
+

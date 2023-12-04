@@ -6,7 +6,7 @@ dotenv.config()
 const PORT = process.env.PORT || 3000
 
 import { getUser, loginUser,registerUser, updateUserProperty } from "./modules/User/user.controller"
-import { createWordsByTopic, getWords, updateWordProperty } from "./modules/Word/word.controller"
+import { createWordsByTopic, createSingleWordByTerm, getWords, updateWordProperty } from "./modules/Word/word.controller"
 
 
 // Middleware
@@ -89,6 +89,18 @@ server.post("/users/:id/topic", async (req, res) => {
   const topic = req.query.topic as string
   // try {
     const newWords = await createWordsByTopic(userId, topic);
+    res.status(201).json(newWords);
+  // } 
+  // catch (error) {
+  //   res.status(500).json({ error: "An error occurred creating new words by topic" });
+  // }
+})
+
+server.post("/users/:id/term", async (req, res) => {
+  const userId = req.params.id;
+  const term = req.query.term as string
+  // try {
+    const newWords = await createSingleWordByTerm(userId, term);
     res.status(201).json(newWords);
   // } 
   // catch (error) {

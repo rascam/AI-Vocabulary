@@ -146,6 +146,32 @@ server.get("/users/:id/words", function (req, res) { return __awaiter(void 0, vo
         }
     });
 }); });
+server.patch("/words/:wordId", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var wordId, word, error_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                wordId = parseInt(req.params.wordId);
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                if (!req.body.key || req.body.value === undefined) {
+                    res.status(400).json({ error: "Key or value not provided" });
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, (0, word_controller_1.updateWordProperty)(wordId, req.body.key, req.body.value)];
+            case 2:
+                word = _a.sent();
+                res.json(word);
+                return [3 /*break*/, 4];
+            case 3:
+                error_5 = _a.sent();
+                res.status(500).json({ error: "An error occurred updating a user property" });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); });
 server.post("/users/:id/topic", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var userId, topic, newWords;
     return __generator(this, function (_a) {
@@ -162,7 +188,7 @@ server.post("/users/:id/topic", function (req, res) { return __awaiter(void 0, v
     });
 }); });
 server.post("/users", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, createdUserId, error_5;
+    var user, createdUserId, error_6;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -176,8 +202,8 @@ server.post("/users", function (req, res) { return __awaiter(void 0, void 0, voi
                 res.status(201).json(createdUserId);
                 return [3 /*break*/, 4];
             case 3:
-                error_5 = _a.sent();
-                console.error(error_5);
+                error_6 = _a.sent();
+                console.error(error_6);
                 res.status(500).json({ error: "An error occurred while creating the user" });
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];

@@ -2,6 +2,7 @@ import {UserCreation} from "../lib/types"
 import { BASE_URL } from "../data/const"
 
 
+
 const api = {
 
   async loginUser(email: string, password: string) {
@@ -79,6 +80,19 @@ const api = {
       return await response.json()
     }
   },
+
+  async createSingleWordByTerm(userId: string, term: string) {
+    const response = await fetch(`${BASE_URL}users/${userId}/term?term=${term}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    if (response.ok) {
+      return await response.json()
+    }
+  },
+
 
   async patchWordProperty(wordId: number, key: string, value: string | number) {
     const response = await fetch(`${BASE_URL}words/${wordId}`, {

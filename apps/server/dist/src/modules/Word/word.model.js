@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createWord = exports.getWordsByUserId = void 0;
+exports.patchSingleWordProperty = exports.createWord = exports.getWordsByUserId = void 0;
 var prisma_1 = __importDefault(require("../../lib/prisma"));
 function getWordsByUserId(userId) {
     return __awaiter(this, void 0, void 0, function () {
@@ -91,3 +91,25 @@ function createWord(wordToCreate) {
     });
 }
 exports.createWord = createWord;
+function patchSingleWordProperty(wordId, key, value) {
+    return __awaiter(this, void 0, void 0, function () {
+        var updatedUser;
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, prisma_1.default.word.update({
+                        where: {
+                            id: wordId
+                        },
+                        data: (_a = {},
+                            _a[key] = value,
+                            _a)
+                    })];
+                case 1:
+                    updatedUser = _b.sent();
+                    return [2 /*return*/, updatedUser];
+            }
+        });
+    });
+}
+exports.patchSingleWordProperty = patchSingleWordProperty;

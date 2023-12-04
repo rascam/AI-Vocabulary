@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for aivocabulary on 2023-12-04T10:30:25+01:00
+# fly.toml app configuration file generated for aivocabulary-icy-wildflower-8407-crimson-sound-9840-wild-leaf-1048-bold-voice-2294 on 2023-12-04T12:54:02+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "aivocabulary"
+app = "aivocabulary-icy-wildflower-8407-crimson-sound-9840-wild-leaf-1048-bold-voice-2294"
 primary_region = "ams"
 
 [build]
