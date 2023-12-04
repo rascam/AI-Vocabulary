@@ -18,7 +18,7 @@ function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
         <p>{word.srcWord}</p>
           <div className="thinLine"></div>
           <div className="translation">
-            <p>{word.targetWord}</p>
+            <p>{(word.targetWord).slice(0, 80)}</p>
           </div>
           <div className="playButton" id="playButton">
           <i className="fa-solid fa-circle-play"></i>
