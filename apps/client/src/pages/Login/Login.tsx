@@ -37,7 +37,7 @@ function Login() {
       <form id="initName" onSubmit={submitHandler} action="#">
         <input type="text" className="inputfield initDialogInput mr-1" id='input-initName' name="email"
           placeholder="your email" value={email} onChange={(e) =>  setEmail(e.target.value)}/>
-           <input type="text" className="inputfield initDialogInput mr-2" id='input-initPassword' name="password"
+           <input type="password" className="inputfield initDialogInput mr-2" id='input-initPassword' name="password"
           placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
         <button type="submit" className='button' id="button-initName">login</button>
       </form>

@@ -27,5 +27,8 @@ COPY --from=builder /app/apps/server/dist ./
 COPY --from=builder /app/node_modules ./node_modules
 # COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
+# RUN --mount=type=secret,id=OPENAI_API_KEY \
+    # OPENAI_API_KEY="$(cat /run/secrets/OPENAI_API_KEY)"
+
 CMD ["node", "index.js"]
 
