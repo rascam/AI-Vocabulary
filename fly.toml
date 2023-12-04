@@ -1,10 +1,15 @@
-# fly.toml app configuration file generated for aivocabulary-icy-wildflower-8407-crimson-sound-9840-wild-leaf-1048-bold-voice-2294 on 2023-12-04T12:54:02+01:00
+# fly.toml app configuration file generated for aivocabulary on 2023-12-04T14:15:06+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "aivocabulary-icy-wildflower-8407-crimson-sound-9840-wild-leaf-1048-bold-voice-2294"
+app = "aivocabulary"
 primary_region = "ams"
+
+[env]
+  OPENAI_API_KEY   = "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"
+  UNSPLASH_API_KEY = "-ANZSgOmVhSxrDesaO8DHO2SGIi73Ylbyfxqi-RZvDA"
+
 
 [build]
 

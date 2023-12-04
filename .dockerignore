@@ -4,3 +4,4 @@ node_modules
 **/dist*
 Dockerfile
 voc202*
+fly.toml

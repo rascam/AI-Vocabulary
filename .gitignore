@@ -37,3 +37,6 @@ apps/server/voc2024-ef011c6bd351.json
 
 # vercel
 .vercel
+
+# fly io
+fly.toml
