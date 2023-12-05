@@ -6,6 +6,7 @@ import { BASE_URL } from "../data/const"
 const api = {
 
   async loginUser(email: string, password: string) {
+    console.log({BASE_URL})
     const response = await fetch(`${BASE_URL}login`, {
       method: "POST",
       headers: {
