@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { defaultImg } from '../../data/const'
+import { defaultImg, UNSPLASH_APP_NAME } from '../../data/const'
 import { Word } from '../../lib/types'
 import playVoice from '../../utils/playVoice'
 import learning from '../../utils/learning'
@@ -118,9 +118,13 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
                 </label>
               </div>}
             </div>
-            {learnStack.length > 0 && <div className="credits">
-              <a href="https://unsplash.com" target="_blank">{frontCard?.credits} - Unsplash</a>
-            </div>}
+            {learnStack.length > 0 && frontCard?.imgUrl &&
+          <div className="credits -z-10" >
+            <a href={`${frontCard.creditsUrl}?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral` || `https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">
+            {frontCard.credits}</a>
+            <span> on </span>
+            <a href={`https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">Unsplash</a>
+          </div>}
           </div>
           {learnStack.length > 0 && 
           <div className="cardBack" id="cardBack"
@@ -149,9 +153,13 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
                 </div>
               </div>
             </div>
-            <div className="credits">
-              <a id="credits" href="https://unsplash.com" target="_blank">{backCard?.credits} - Unsplash</a>
-            </div>
+            {backCard?.imgUrl &&
+          <div className="credits -z-10" >
+            <a href={`${backCard.creditsUrl}?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral` || `https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">
+            {backCard.credits}</a>
+            <span> on </span>
+            <a href={`https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">Unsplash</a>
+          </div>}
           </div>}
         </div>
       </div>

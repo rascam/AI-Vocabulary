@@ -26,7 +26,7 @@ function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
           </div>
           {word.imgUrl &&
           <div className="credits" >
-            <a href={word.creditsUrl || `https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">
+            <a href={`${word.creditsUrl}?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral` || `https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">
             {word.credits}</a>
             <span> on </span>
             <a href={`https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">Unsplash</a>
