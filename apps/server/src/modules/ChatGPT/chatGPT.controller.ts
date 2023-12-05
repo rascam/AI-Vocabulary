@@ -3,17 +3,13 @@ import { User } from "../../lib/types"
 
 import { createChatCompletion } from "./chatGPT.model"
 import { parseWordList } from "./parsing"
-import { createPromptForTopic, createPromptForSingleTranslation } from "./prompts"
+import { createPromptForTopic, createPromptForSingleTranslation, createPromptForEnglishPhotoSearchTerms } from "./prompts"
 
 export async function createWordListByTopic(user: User, topic: string) {
   
   const prompt = createPromptForTopic(user, topic)
 
-  console.log(prompt)
-
   const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang)
-
-  console.log(chatCompletion)
 
   if (!chatCompletion.content) {
     throw new Error("Chat completion not successful")
@@ -24,16 +20,33 @@ export async function createWordListByTopic(user: User, topic: string) {
 }
 
 
+export async function createEnglishPhotoSearchTerms(user: User, wordPairList: [string, string][]): Promise<string[]> {
+  
+  const prompt = createPromptForEnglishPhotoSearchTerms(user, wordPairList)
+
+  const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang)
+
+  if (!chatCompletion.content || chatCompletion.role !== "assistant") {
+    throw new Error("Chat completion not successful")
+  }
+    const englishWords = chatCompletion.content
+      .split(/\d+\. /gm)
+      .map((e) => e.replace(/^(The |a |the |A )/gim, "").trim())
+
+    if (englishWords[0].trim() === "") englishWords.shift()
+
+    for (let i = 0; i < englishWords.length; i++) {
+      console.log(`englishWords[${i}]: `, englishWords[i])
+  }
+  return englishWords
+}
+
 
 export async function createSingleTranslation(user: User, term: string) {
   
   const prompt = createPromptForSingleTranslation(user, term)
 
-  console.log(prompt)
-
   const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang)
-
-  console.log(chatCompletion)
 
   if (!chatCompletion.content) {
     throw new Error("Chat completion not successful")

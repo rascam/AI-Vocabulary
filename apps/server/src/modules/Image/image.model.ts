@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 dotenv.config()
 const UNSPLASH_API_KEY= process.env.UNSPLASH_API_KEY
 
-export async function getImageByKeyword(keyword: string) {
+export async function getUnsplashImageByKeyword(keyword: string) {
   try {
 
   if (!keyword) {
@@ -13,8 +13,6 @@ export async function getImageByKeyword(keyword: string) {
     `https://api.unsplash.com/search/photos?query=${keyword}&per_page=3&content_filter=high&orientation=portrait`,
     {
       method: "GET",
-      // body: body ,
-      // mode: "cors",
       headers: {
         Authorization:
           "Client-ID -ANZSgOmVhSxrDesaO8DHO2SGIi73Ylbyfxqi-RZvDA",
@@ -23,13 +21,14 @@ export async function getImageByKeyword(keyword: string) {
   )
 
   const photo = await response.json()
+  console.log(photo.results[0])
   const photoCount = photo.results.length
   const photoIndex = Math.floor(Math.random() * photoCount)
   const imgUrl: string = photo.results[photoIndex].urls.thumb || ""
   const credits: string = photo.results[photoIndex].user.name || ""
-  const creditsUrl: string = photo.results[photoIndex].user.links.self || ""
+  const creditsUrl: string = photo.results[photoIndex].user.links.html || ""
 
-  console.log(imgUrl, credits, creditsUrl)
+  // console.log(imgUrl, credits, creditsUrl)
 
     return {
       imgUrl,
@@ -40,6 +39,3 @@ export async function getImageByKeyword(keyword: string) {
       console.error(error)
   }
   }
-
-  // console.log('Unsplash API response: ', response)
-  

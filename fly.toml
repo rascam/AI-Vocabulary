@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for aivocabulary on 2023-12-04T17:08:26+01:00
+# fly.toml app configuration file generated for aivocabulary on 2023-12-04T23:32:06+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -7,6 +7,9 @@ app = "aivocabulary"
 primary_region = "ams"
 
 [build]
+
+[env]
+  PORT = "8080"
 
 [http_service]
   internal_port = 8080

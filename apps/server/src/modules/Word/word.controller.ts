@@ -1,11 +1,11 @@
 import { getUserById } from "../User/user.model"
 import { createWord, getWordsByUserId, patchSingleWordProperty } from "./word.model"
 import { Word, User } from '../../lib/types'
-import { createWordListByTopic, createSingleTranslation } from "../ChatGPT/chatGPT.controller"
+import { createWordListByTopic, createSingleTranslation, createEnglishPhotoSearchTerms } from "../ChatGPT/chatGPT.controller"
 import { speakingRateNormal, speakingRateSlow } from "../../lib/const"
 import { getGoogleVoice } from "../Speech/speech.model"
 import { languages } from "../../lib/languagesConfig"
-import { getImageByKeyword } from "../Image/image.model"
+import { getImageController } from "../Image/image.controller"
 
 
 export async function getWords(userId: string) {
@@ -26,6 +26,21 @@ export async function createWordsByTopic(userId: string, topic: string) {
   }
 
   const generatedWordPairs = await createWordListByTopic(user, topic)
+
+  let englishPhotoSearchTerms = []
+  if ( user.userSrcLang !== "en" &&user.userTargetLang !== "en") {
+    englishPhotoSearchTerms = await createEnglishPhotoSearchTerms(
+      user,
+      generatedWordPairs
+    )
+    console.log(
+      "englishPhotoSearchTerms after await: ",
+      englishPhotoSearchTerms
+    )
+  } else {
+    englishPhotoSearchTerms = ["","","","","","","","","","",""]
+  }
+
   const createdWords: Word[] = []
   
   const language = user.userTargetLang
@@ -34,7 +49,7 @@ export async function createWordsByTopic(userId: string, topic: string) {
   for (let i = 0; i < generatedWordPairs.length; i++) {
     const voice = await getGoogleVoice(generatedWordPairs[i][1], language, selectedVoice ,speakingRateNormal)
     const voiceSlow = await getGoogleVoice(generatedWordPairs[i][1], language, selectedVoice ,speakingRateSlow)
-    const image = await getImageByKeyword(generatedWordPairs[i][0])
+    const image = await getImageController (user, generatedWordPairs[i][0], generatedWordPairs[i][1], englishPhotoSearchTerms[i])
    
     const wordToCreate = {
       userId,
@@ -70,7 +85,7 @@ export async function createSingleWordByTerm(userId: string, term: string) {
 
     const voice = await getGoogleVoice(generatedSingleTerm[1], language, selectedVoice ,speakingRateNormal)
     const voiceSlow = await getGoogleVoice(generatedSingleTerm[1], language, selectedVoice ,speakingRateSlow)
-    const image = await getImageByKeyword(generatedSingleTerm[0])
+    const image = {imgUrl: "", credits: "", creditsUrl: ""}
    
     const wordToCreate = {
       userId,

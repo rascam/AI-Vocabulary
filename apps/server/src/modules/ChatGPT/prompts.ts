@@ -33,6 +33,23 @@ let prompt = ""
   return prompt
 }
 
+
+
+export function createPromptForEnglishPhotoSearchTerms(user: User, wordPairList: [string, string][]) {
+  
+    const srcLang = `${languages[user.userSrcLang].language}`
+
+    let prompt = ""
+    prompt += `Translate this list from ${srcLang} into English. Keep the format of the list!\n\n`
+  
+    for (let i = 0; i < wordPairList.length; i++) {
+      prompt += `${i + 1}. ${wordPairList[i][0]}\n`
+    }
+  
+    return prompt
+  }
+
+
 export function createPromptForSingleTranslation(user: User, term: string): string {
   let prompt = ""
   

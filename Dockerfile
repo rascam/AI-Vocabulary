@@ -1,4 +1,4 @@
-FROM node:18 as builder
+FROM node:18-alpine as builder
 
 WORKDIR /app
 
@@ -25,10 +25,8 @@ WORKDIR /app
 
 COPY --from=builder /app/apps/server/dist ./
 COPY --from=builder /app/node_modules ./node_modules
-# COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
-# RUN --mount=type=secret,id=OPENAI_API_KEY \
-    # OPENAI_API_KEY="$(cat /run/secrets/OPENAI_API_KEY)"
+EXPOSE 8080
 
 CMD ["node", "index.js"]
 

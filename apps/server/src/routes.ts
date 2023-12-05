@@ -3,7 +3,7 @@ const server = express()
 
 import dotenv from "dotenv"
 dotenv.config()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 
 import { getUser, loginUser,registerUser, updateUserProperty } from "./modules/User/user.controller"
 import { createWordsByTopic, createSingleWordByTerm, getWords, updateWordProperty } from "./modules/Word/word.controller"
