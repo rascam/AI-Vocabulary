@@ -21,8 +21,8 @@ type WordToCreate = {
   imgUrl: string | undefined
   credits: string | undefined
   creditsUrl: string | undefined
-  voice: string | undefined
-  voiceSlow: string | undefined
+  // voice: string | undefined
+  // voiceSlow: string | undefined
 }
 
 export async function createWord(wordToCreate: WordToCreate) {
@@ -34,8 +34,8 @@ export async function createWord(wordToCreate: WordToCreate) {
       imgUrl: wordToCreate.imgUrl,
       credits: wordToCreate.credits,
       creditsUrl: wordToCreate.creditsUrl,
-      voice: wordToCreate.voice,
-      voiceSlow: wordToCreate.voiceSlow,
+      // voice: wordToCreate.voice,
+      // voiceSlow: wordToCreate.voiceSlow,
       bin: 0
     }
   })

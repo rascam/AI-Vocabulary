@@ -87,25 +87,25 @@ server.patch("/words/:wordId", async (req, res) => {
 server.post("/users/:id/topic", async (req, res) => {
   const userId = req.params.id;
   const topic = req.query.topic as string
-  // try {
+  try {
     const newWords = await createWordsByTopic(userId, topic);
     res.status(201).json(newWords);
-  // } 
-  // catch (error) {
-  //   res.status(500).json({ error: "An error occurred creating new words by topic" });
-  // }
+  } 
+  catch (error) {
+    res.status(500).json({ error: "An error occurred creating new words by topic" });
+  }
 })
 
 server.post("/users/:id/term", async (req, res) => {
   const userId = req.params.id;
   const term = req.query.term as string
-  // try {
+  try {
     const newWords = await createSingleWordByTerm(userId, term);
     res.status(201).json(newWords);
-  // } 
-  // catch (error) {
-  //   res.status(500).json({ error: "An error occurred creating new words by topic" });
-  // }
+  } 
+  catch (error) {
+    res.status(500).json({ error: "An error occurred creating new words by topic" });
+  }
 })
 
 server.post("/users", async (req, res) => {

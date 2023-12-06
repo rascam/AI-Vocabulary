@@ -115,7 +115,7 @@ a {
 .inputfield {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
-  min-width: 12rem;
+  /* min-width: 8rem; */
   color: #023047;
   padding: 0.5em 1em;
   background-color: #ffb703;
@@ -128,7 +128,7 @@ a {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   color: #023047;
-  margin: 0.5em 0.25em 0.5em 0.25em;
+  /* margin: 0.5em 0.25em 0.5em 0.25em; */
   padding: 0.5em 1em;
   border: 2px solid #fb8500;
   border-radius: 0.5em;

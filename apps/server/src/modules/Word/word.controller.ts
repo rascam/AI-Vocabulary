@@ -47,8 +47,8 @@ export async function createWordsByTopic(userId: string, topic: string) {
   const selectedVoice = languages[language].voice
 
   for (let i = 0; i < generatedWordPairs.length; i++) {
-    const voice = await getGoogleVoice(generatedWordPairs[i][1], language, selectedVoice ,speakingRateNormal)
-    const voiceSlow = await getGoogleVoice(generatedWordPairs[i][1], language, selectedVoice ,speakingRateSlow)
+    // const voice = await getGoogleVoice(generatedWordPairs[i][1], language, selectedVoice ,speakingRateNormal)
+    // const voiceSlow = await getGoogleVoice(generatedWordPairs[i][1], language, selectedVoice ,speakingRateSlow)
     const image = await getImageController (user, generatedWordPairs[i][0], generatedWordPairs[i][1], englishPhotoSearchTerms[i])
    
     const wordToCreate = {
@@ -58,8 +58,8 @@ export async function createWordsByTopic(userId: string, topic: string) {
       imgUrl: image?.imgUrl,
       credits: image?.credits,
       creditsUrl: image?.creditsUrl,
-      voice,
-      voiceSlow
+      // voice,
+      // voiceSlow
     }
 
     const createdWord = await createWord(wordToCreate)
@@ -83,8 +83,8 @@ export async function createSingleWordByTerm(userId: string, term: string) {
   const language = user.userTargetLang
   const selectedVoice = languages[language].voice
 
-    const voice = await getGoogleVoice(generatedSingleTerm[1], language, selectedVoice ,speakingRateNormal)
-    const voiceSlow = await getGoogleVoice(generatedSingleTerm[1], language, selectedVoice ,speakingRateSlow)
+    // const voice = await getGoogleVoice(generatedSingleTerm[1], language, selectedVoice ,speakingRateNormal)
+    // const voiceSlow = await getGoogleVoice(generatedSingleTerm[1], language, selectedVoice ,speakingRateSlow)
     const image = {imgUrl: "", credits: "", creditsUrl: ""}
    
     const wordToCreate = {
@@ -94,8 +94,8 @@ export async function createSingleWordByTerm(userId: string, term: string) {
       imgUrl: image?.imgUrl,
       credits: image?.credits,
       creditsUrl: image?.creditsUrl,
-      voice,
-      voiceSlow
+      // voice,
+      // voiceSlow
     }
 
     const createdWord = await createWord(wordToCreate)

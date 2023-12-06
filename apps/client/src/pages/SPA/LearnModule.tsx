@@ -111,15 +111,15 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
               backgroundSize: 'cover',
             }}>
             <div className="inner">
-              {/* <p id="cardFrontUpper" className="bold">{frontCard?.srcWord || 'No vocabulary to learn.'}</p> */}
-              {/* {learnStack.length > 0 && <div className="yesNo"> */}
-                {/* <label htmlFor="flipCard" className="buttonFlipCard" aria-hidden="true"> */}
-                  {/* <i className="fa-regular fa-circle-question fa-2xl"></i> */}
-                {/* </label> */}
-              {/* </div>} */}
+              <p id="cardFrontUpper" className="bold">{frontCard?.srcWord || 'No vocabulary to learn.'}</p>
+              {learnStack.length > 0 && <div className="yesNo">
+                <label htmlFor="flipCard" className="buttonFlipCard" aria-hidden="true">
+                  <i className="fa-regular fa-circle-question fa-2xl"></i>
+                </label>
+              </div>}
             </div>
             {learnStack.length > 0 && frontCard?.imgUrl &&
-          <div className="credits -z-10" >
+          <div className="credits" >
             <a href={`${frontCard.creditsUrl}?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral` || `https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">
             {frontCard.credits}</a>
             <span> on </span>

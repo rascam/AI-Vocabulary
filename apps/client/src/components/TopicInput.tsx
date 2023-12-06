@@ -52,14 +52,14 @@ function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.
     <div className="inputContainer" id="inputContainer">
       <div className="input">
         <form id="addTopicForm" onSubmit={(e) => submitTopicHandler(e, userId, topic)}>
-          <input type="text" className="inputfield" id='input-addTopic' name="topic" onChange={handleTopicChange} placeholder="Enter a topic" value={topic} />
-          <button style={{background: '#ffb703'}} type="submit" className='button button-small' id="button-addTopic">add</button>
+          <input type="text" className="inputfield mr-1" id='input-addTopic' name="topic" onChange={handleTopicChange} placeholder="Enter a topic" value={topic} />
+          <button style={{background: '#ffb703'}} type="submit" className='button button-small' id="button-addTopic">+10</button>
         </form>
       </div>
       <div className="input">
         <form id="addSingleForm" onSubmit={(e) => submitSingleHandler(e, userId, term)}>
-          <input type="text" className="inputfield" id='input-addSingle' name="single" onChange={handleSingleTermChange} placeholder="word or short phrase" value={term} />
-          <button style={{background: '#ffb703'}} type="submit" className='button button-small' id="button-addSingle">add</button>
+          <input type="text" className="inputfield mr-1" id='input-addSingle' name="single" onChange={handleSingleTermChange} placeholder="word or short phrase" value={term} />
+          <button style={{background: '#ffb703'}} type="submit" className='button button-small' id="button-addSingle">+1</button>
         </form>
       </div>
     </div>
