@@ -634,12 +634,11 @@ select {
 }/*# sourceMappingURL=style.css.map */
 
 @media screen and (max-device-width: 480px) {
-  :root {
+  :root, body, html {
     background-color: #023047;
   }
-
   .appContainer {
     width: 100%;
+    border-radius: 0;
   }
-
 }
