@@ -154,7 +154,7 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
               </div>
             </div>
             {backCard?.imgUrl &&
-          <div className="credits -z-10" >
+          <div className="credits" >
             <a href={`${backCard.creditsUrl}?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral` || `https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">
             {backCard.credits}</a>
             <span> on </span>
