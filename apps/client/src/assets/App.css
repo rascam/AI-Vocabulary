@@ -446,7 +446,8 @@ select {
   transform: translateX(-50%);
 }
 .credits a {
-  color: #8ecae6;
+  color:#d5e3ea;
+  /* color: #8ecae6; */
 }
 
 .credits span {

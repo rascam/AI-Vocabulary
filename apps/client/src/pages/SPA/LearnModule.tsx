@@ -120,9 +120,9 @@ function LearnModule({words, slowSpeech, userScore, userId, setUser, bins, setBi
             </div>
             {learnStack.length > 0 && frontCard?.imgUrl &&
           <div className="credits" >
-            <a href={`${frontCard.creditsUrl}?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral` || `https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">
+            <a  href={`${frontCard.creditsUrl}?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral` || `https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">
             {frontCard.credits}</a>
-            <span> on </span>
+            <span > on </span>
             <a href={`https://unsplash.com/?utm_source=${UNSPLASH_APP_NAME}&utm_medium=referral`} target="_blank">Unsplash</a>
           </div>}
           </div>
