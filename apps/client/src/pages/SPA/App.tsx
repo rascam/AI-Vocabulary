@@ -61,9 +61,11 @@ function App() {
 
 
   return (
+  
     <div className="appContainer">
-      {/* <h1 className="title-text text-6xl">AI Vocabulary Trainer</h1> */}
       <StatusRow name={user?.name} showElement={showElement} setShowElement={setShowElement}/>
+      {/* <h1 className="title-text text-6xl">AI Vocabulary Trainer</h1> */}
+      
       <div className="flexContainer">
         {showElement.topicInput && loggedInUserId &&
           <TopicInput userId={loggedInUserId} updateWords={(array) => setWords(array)}/>}
@@ -76,6 +78,7 @@ function App() {
       {showElement.vocList && user &&
         <CardList words={(words)} slowSpeech={user.slowSpeech} />}
     </div>
+
   )
 }
 
