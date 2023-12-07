@@ -11,8 +11,10 @@ function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.
 
   const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let text = event.target.value
-
-    text = text.replace(/[^a-zA-Z\s'.,]/g, "").slice(0, 30)
+    if (!text.match(/^[-\p{L}\p{N}\s_-]+$/giu)) {
+      text = text.slice(0, text.length -1)
+    }
+    text = text.slice(0, 50)
     
     setTopic(text)
   }
@@ -31,8 +33,10 @@ function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.
   const handleSingleTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let text = event.target.value
 
-    text = text.replace(/[^0-9a-zA-Z\s'.,?!"]/g, "").slice(0, 50)
-    
+    if (!text.match(/^[-\p{L}\p{N}\s_-]+$/giu)) {
+      text = text.slice(0, text.length -1)
+    }
+    text = text.slice(0, 50)
     setTerm(text)
   }
 
