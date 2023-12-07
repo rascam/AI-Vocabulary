@@ -51,15 +51,15 @@ function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.
   return (
     <div className="inputContainer" id="inputContainer">
       <div className="input">
-        <form id="addTopicForm" onSubmit={(e) => submitTopicHandler(e, userId, topic)}>
+        <form className="flex flex-nowrap" id="addTopicForm" onSubmit={(e) => submitTopicHandler(e, userId, topic)}>
           <input type="text" className="inputfield mr-1" id='input-addTopic' name="topic" onChange={handleTopicChange} placeholder="Enter a topic" value={topic} />
-          <button style={{background: '#ffb703'}} type="submit" className='button button-small' id="button-addTopic">+15</button>
+          <button style={{background: '#ffb703'}} type="submit" className='button button-small h-11 mt-1' id="button-addTopic">+15</button>
         </form>
       </div>
       <div className="input">
-        <form id="addSingleForm" onSubmit={(e) => submitSingleHandler(e, userId, term)}>
+        <form  className="flex flex-nowrap" id="addSingleForm" onSubmit={(e) => submitSingleHandler(e, userId, term)}>
           <input type="text" className="inputfield mr-1" id='input-addSingle' name="single" onChange={handleSingleTermChange} placeholder="word or short phrase" value={term} />
-          <button style={{background: '#ffb703'}} type="submit" className='button button-small' id="button-addSingle">+1</button>
+          <button style={{background: '#ffb703'}} type="submit" className='button button-small  h-11 mt-1' id="button-addSingle">+1</button>
         </form>
       </div>
     </div>

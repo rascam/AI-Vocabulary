@@ -36,7 +36,7 @@ function Login() {
       <h2 className="text-2xl text-left mt-6">Welcome!</h2>
       <form className="flex-col" id="initName" onSubmit={submitHandler} action="#">
       <h2 className="text-lg text-left mt-6">Did we see us before?</h2>
-        <input type="text" className="inputfield initDialogInput max-w-md mr-1" id='input-initName' name="email"
+        <input type="text" className="inputfield initDialogInput max-w-md mr-2" id='input-initName' name="email"
           placeholder="your email" value={email} onChange={(e) =>  setEmail(e.target.value)}/>
            <input type="password" className="inputfield initDialogInput max-w-md mr-2" id='input-initPassword' name="password"
           placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
