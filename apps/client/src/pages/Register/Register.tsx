@@ -109,6 +109,9 @@ function Register() {
         {errorMessage && <ErrorMessage text={errorMessage} />}
         <button type="submit" className='button max-w-md mt-8' id="button-initUserData">Create account</button>
       </form>
+      <div className="flex flex-start">
+        <h2 className="text-lg text-left mt-12"><a onClick={() => navigate("/login")} className="cursor-pointer hover:text-white" >Go to Login</a></h2>
+      </div>
     </div>
 
   )

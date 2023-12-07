@@ -40,10 +40,10 @@ function Login() {
           placeholder="your email" value={email} onChange={(e) =>  setEmail(e.target.value)}/>
            <input type="password" className="inputfield initDialogInput max-w-md mr-2" id='input-initPassword' name="password"
           placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-        <button type="submit" className='button' id="button-initName">login</button>
+        <button type="submit" className='button mt-6' id="button-initName">login</button>
       </form>
       {errorMessage && !email && !password && <ErrorMessage text={errorMessage} />}
-      <div className="flex-col">
+      <div className="flex flex-start">
         <h2 className="text-lg text-left mt-12">Don't have an account? - <a onClick={toRegister} className="cursor-pointer hover:text-white" >Register</a></h2>
       </div>
     </div>
