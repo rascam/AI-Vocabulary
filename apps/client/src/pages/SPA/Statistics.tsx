@@ -15,7 +15,11 @@ function Statistics( {vocCount, score, bins}: {vocCount: number, score: number, 
       }
       calculateDegrees[i] += ((280/vocCount)*bins[i])+4
     }
+    if (vocCount === 0) {
+      setBinDegrees([58, 117, 180, 238])
+    } else {
     setBinDegrees(calculateDegrees)
+    }
   }, [bins, vocCount])
   
 

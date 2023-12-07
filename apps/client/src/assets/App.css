@@ -97,7 +97,7 @@ a {
   display: flex;
   position: relative;
   width: 90%;
-  margin: 0 auto 10rem auto;
+  margin: 0 auto 0 auto;
   min-width: 300px;
   min-height: 300px;
   background-color: #023047;

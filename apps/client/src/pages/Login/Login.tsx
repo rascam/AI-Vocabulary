@@ -31,18 +31,21 @@ function Login() {
   }
 
   return (
-    <div className="initDialog flex-col" id="initDialog">
-      <h2 className="welcome" id="welcomeInitBox">Welcome!</h2>
-      <h2 className="text-lg text-left mt-7">Did we see us before?</h2>
-      <form id="initName" onSubmit={submitHandler} action="#">
-        <input type="text" className="inputfield initDialogInput mr-1" id='input-initName' name="email"
+    <div className="initDialog flex-col items-center" id="initDialog">
+      <h1 className="title-text text-5xl">AI Vocabulary Trainer</h1>
+      <h2 className="text-2xl text-left mt-6">Welcome!</h2>
+      <form className="flex-col" id="initName" onSubmit={submitHandler} action="#">
+      <h2 className="text-lg text-left mt-6">Did we see us before?</h2>
+        <input type="text" className="inputfield initDialogInput max-w-md mr-1" id='input-initName' name="email"
           placeholder="your email" value={email} onChange={(e) =>  setEmail(e.target.value)}/>
-           <input type="password" className="inputfield initDialogInput mr-2" id='input-initPassword' name="password"
+           <input type="password" className="inputfield initDialogInput max-w-md mr-2" id='input-initPassword' name="password"
           placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
         <button type="submit" className='button' id="button-initName">login</button>
       </form>
       {errorMessage && !email && !password && <ErrorMessage text={errorMessage} />}
-      <h2 className="text-lg text-left mt-12">Don't have an account? - <a onClick={toRegister} className="cursor-pointer hover:text-white" >Register</a></h2>
+      <div className="flex-col">
+        <h2 className="text-lg text-left mt-12">Don't have an account? - <a onClick={toRegister} className="cursor-pointer hover:text-white" >Register</a></h2>
+      </div>
     </div>
   )
 }

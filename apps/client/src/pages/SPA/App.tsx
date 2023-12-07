@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div className="appContainer">
-      <h1 className="title-text text-6xl">AI Vocabulary Trainer</h1>
+      {/* <h1 className="title-text text-6xl">AI Vocabulary Trainer</h1> */}
       <StatusRow name={user?.name} showElement={showElement} setShowElement={setShowElement}/>
       <div className="flexContainer">
         {showElement.topicInput && loggedInUserId &&
