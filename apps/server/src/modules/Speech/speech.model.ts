@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 const keysEnvVar = process.env['GOOGLE_CREDS'];
 if (!keysEnvVar) {
-  throw new Error('The $CREDS environment variable was not found!');
+  throw new Error('The $GOOGLE_CREDS environment variable was not found!');
 }
 const keys = JSON.parse(keysEnvVar);
 console.log({keys})
