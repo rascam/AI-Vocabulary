@@ -23,6 +23,7 @@ function App() {
   const [bins, setBins] = useState([0, 0, 0, 0, 0])
 
   const [showElement, setShowElement] = useState({vocList: false, stats: true, settings: false, topicInput: true})
+  const [autoPlay, setAutoPlay] = useState(true)
 
   useEffect(() => {
     async function loginAndGetData() {
@@ -67,8 +68,8 @@ function App() {
         {showElement.topicInput && loggedInUserId &&
           <TopicInput userId={loggedInUserId} updateWords={(array) => setWords(array)}/>}
         {showElement.settings && loggedInUserId &&
-          <Settings userId={loggedInUserId} learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech} setUser={(user) => setUser(user)}/>}
-        {loggedInUserId && user && <LearnModule userId={loggedInUserId} words={(words)} slowSpeech={user.slowSpeech} userScore={user.score} setUser={(user) => setUser(user)} bins={bins} setBins={(bins) => setBins(bins)} />}
+          <Settings userId={loggedInUserId} vocCount={words.length || 0} learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech} userSrcLang={user?.userSrcLang} userTargetLang={user?.userTargetLang} autoPlay={autoPlay} setAutoPlay={(autoPlay) => setAutoPlay(autoPlay)} setUser={(user) => setUser(user)} setBins={(bins) => setBins(bins)}/>}
+        {loggedInUserId && user && <LearnModule userId={loggedInUserId} words={(words)} slowSpeech={user.slowSpeech} userScore={user.score} autoPlay={autoPlay} setUser={(user) => setUser(user)} bins={bins} setBins={(bins) => setBins(bins)} />}
         {showElement.stats && loggedInUserId &&
           <Statistics vocCount={words.length || 0} score={user?.score || 0} bins={bins}/>}
       </div>

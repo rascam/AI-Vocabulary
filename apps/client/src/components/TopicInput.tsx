@@ -53,7 +53,7 @@ function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.
       <div className="input">
         <form id="addTopicForm" onSubmit={(e) => submitTopicHandler(e, userId, topic)}>
           <input type="text" className="inputfield mr-1" id='input-addTopic' name="topic" onChange={handleTopicChange} placeholder="Enter a topic" value={topic} />
-          <button style={{background: '#ffb703'}} type="submit" className='button button-small' id="button-addTopic">+10</button>
+          <button style={{background: '#ffb703'}} type="submit" className='button button-small' id="button-addTopic">+15</button>
         </form>
       </div>
       <div className="input">

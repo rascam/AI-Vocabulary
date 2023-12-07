@@ -409,7 +409,7 @@ select {
 .cardFront .thin,
 .cardBack .thin {
   font-weight: 200;
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-align: center;
 }
 .cardFront .bold,

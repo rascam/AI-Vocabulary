@@ -17,11 +17,11 @@ function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
           backgroundSize: 'cover',
         }}>
         <p>{word.srcWord}</p>
-          <div className="thinLine"></div>
+          <div className="thinLine mt-1 mb-1"></div>
           <div className="translation">
             <p>{(word.targetWord).slice(0, 80)}</p>
           </div>
-          <div className="playButton" id="playButton">
+          <div className="playButton mt-3" id="playButton">
           <i className="fa-solid fa-circle-play"></i>
           </div>
           {word.imgUrl &&
