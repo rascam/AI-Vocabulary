@@ -5,7 +5,7 @@ const keysEnvVar = process.env['GOOGLE_CREDS'];
 if (!keysEnvVar) {
   throw new Error('The $CREDS environment variable was not found!');
 }
-console.log({keysEnvVar})
+
 const keys = JSON.parse(keysEnvVar);
 console.log({keys})
 
@@ -26,14 +26,21 @@ async function main() {
   // set the scopes
   //@ts-ignore
   client.scopes = ['https://www.googleapis.com/auth/cloud-platform']
-  const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`
+  const url = `https://texttospeech.googleapis.com/v1/voices?languageCode=de`
   const res = await client.request({url})
   console.log("response from google auth ",res.data)
+
+  return client
 }
-main().catch(console.error)
 
-
-import textToSpeech from "@google-cloud/text-to-speech"
-const googleSpeech = new textToSpeech.TextToSpeechClient()
+let googleSpeech = undefined
+try {
+  googleSpeech =  main()
+} catch (e) {
+  console.log(e)
+}
 
 export default googleSpeech
+// import textToSpeech from "@google-cloud/text-to-speech"
+// const googleSpeech = new textToSpeech.TextToSpeechClient()
+
