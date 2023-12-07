@@ -1,7 +1,7 @@
 
 export const BASE_URL: string | undefined = import.meta.env.VITE_BASE_URL
 
-export const UNSPLASH_APP_NAME: string | undefined = import.meta.env.UNSPLASH_APP_NAME
+export const UNSPLASH_APP_NAME: string | undefined = import.meta.env.VITE_UNSPLASH_APP_NAME
 
 import imageUrl from '/src/assets/img/defaultImg.jpg'
 export const defaultImg = imageUrl
