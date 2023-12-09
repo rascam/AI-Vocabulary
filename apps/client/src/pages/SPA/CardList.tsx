@@ -23,7 +23,7 @@ function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
             <p>{(word.targetWord).slice(0, 80)}</p>
           </div>
           <div className="playButton mt-3" id="playButton">
-          <i className="fa-solid fa-circle-play"></i>
+          <i className="fa-solid fa-volume-high"></i>
           </div>
           {word.imgUrl &&
           <div className="credits" >
