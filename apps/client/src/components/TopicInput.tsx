@@ -2,38 +2,40 @@ import { useState } from "react"
 import React from "react"
 import { Word } from "../lib/types"
 import api from "../lib/api"
+import GeneratingAnimation from "./ui/GeneratingAni"
 
 
-function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.Dispatch<React.SetStateAction<Word[]>>}) {
+function TopicInput ({userId, updateWords, isGenerating, setIsGenerating}: {userId: string, updateWords: React.Dispatch<React.SetStateAction<Word[]>>, isGenerating: boolean, setIsGenerating: React.Dispatch<React.SetStateAction<boolean>>}) {
 
   const [topic, setTopic] = useState("")
   const [term, setTerm] = useState("")
 
   const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let text = event.target.value
-    if (!text.match(/^[-\p{L}\p{N}\s_-]+$/giu)) {
+    if (!text.match(/^[-\p{L}\p{N}\s,?.!']+$/giu)) {
       text = text.slice(0, text.length -1)
     }
     text = text.slice(0, 50)
-    
     setTopic(text)
   }
-    
+  
   async function submitTopicHandler (e: React.FormEvent, user: string, topic: string) {
     e.preventDefault()
-    topic = topic.trim()
-    await api.createWordsByTopic(user, topic)
+    const text = topic.trim()
     setTopic("")
+    setIsGenerating(true)
+    await api.createWordsByTopic(user, text)
     const wordArray = await api.getWordsByUserId(user)
     if (wordArray) {
       updateWords(wordArray)
     }
+    setIsGenerating(false)
   }
 
   const handleSingleTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let text = event.target.value
 
-    if (!text.match(/^[-\p{L}\p{N}\s_-]+$/giu)) {
+    if (!text.match(/^[-\p{L}\p{N}\s,?.!'/]+$/giu)) {
       text = text.slice(0, text.length -1)
     }
     text = text.slice(0, 50)
@@ -53,6 +55,7 @@ function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.
 
 
   return (
+    <>
     <div className="inputContainer" id="inputContainer">
       <div className="input">
         <form className="flex flex-nowrap" id="addTopicForm" onSubmit={(e) => submitTopicHandler(e, userId, topic)}>
@@ -65,8 +68,10 @@ function TopicInput ({userId, updateWords}: {userId: string, updateWords: React.
           <input type="text" className="inputfield mr-1" id='input-addSingle' name="single" onChange={handleSingleTermChange} placeholder="word or short phrase" value={term} />
           <button style={{background: '#ffb703'}} type="submit" className='button button-small  h-11 mt-1' id="button-addSingle">+1</button>
         </form>
-      </div>
+      {isGenerating && <div className="ml-1 mt-2"><GeneratingAnimation /></div>}  
+      </div>      
     </div>
+    </>
   )
 }
 

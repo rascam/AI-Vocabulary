@@ -6,7 +6,6 @@ if (!keysEnvVar) {
   throw new Error('The $GOOGLE_CREDS environment variable was not found!');
 }
 const keys = JSON.parse(keysEnvVar);
-console.log({keys})
 
 import { auth } from 'google-auth-library'
 
