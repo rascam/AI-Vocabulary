@@ -56,8 +56,8 @@ function TopicInput ({userId, updateWords, isGenerating, setIsGenerating}: {user
 
 
   return (
-    <>
-    <div className="inputContainer" id="inputContainer">
+    <div className="flex flex-col justify-items-center">
+      <div className="inputContainer" id="inputContainer">
       <div className="input">
         <form className="flex flex-nowrap" id="addTopicForm" onSubmit={(e) => submitTopicHandler(e, userId, topic)}>
           <input type="text" className="inputfield mr-1" id='input-addTopic' name="topic" onChange={handleTopicChange} placeholder="Enter a topic" value={topic} />
@@ -69,10 +69,10 @@ function TopicInput ({userId, updateWords, isGenerating, setIsGenerating}: {user
           <input type="text" className="inputfield mr-1" id='input-addSingle' name="single" onChange={handleSingleTermChange} placeholder="word or short phrase" value={term} />
           <button style={{background: '#ffb703'}} type="submit" className='button button-small  h-11 mt-1' id="button-addSingle">+1</button>
         </form>
-      {isGenerating && <div className="ml-1 mt-2"><GeneratingAnimation /></div>}  
       </div>      
+      </div>
+      {isGenerating && <div className="ml-12"><GeneratingAnimation /></div>}  
     </div>
-    </>
   )
 }
 

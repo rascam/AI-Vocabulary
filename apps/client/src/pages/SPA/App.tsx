@@ -21,7 +21,7 @@ function App() {
   const [user, setUser] = useState<User | null>(null)
   const [words, setWords] = useState<Word[]>([])
   const [bins, setBins] = useState([0, 0, 0, 0, 0])
-  const [isGenerating, setIsGenerating] = useState(false)
+  const [isGenerating, setIsGenerating] = useState(true)
 
   const [showElement, setShowElement] = useState({vocList: false, stats: true, settings: false, topicInput: true})
   const [autoPlay, setAutoPlay] = useState(true)

@@ -12,7 +12,7 @@ const GeneratingAnimation = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mt-2">
       <p>Generating, please wait {dots}</p>
     </div>
   );
