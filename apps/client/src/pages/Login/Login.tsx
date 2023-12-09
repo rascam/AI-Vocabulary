@@ -15,7 +15,7 @@ function Login() {
 
   async function submitHandler (e: React.FormEvent) {
     e.preventDefault()
-    const userId = await api.loginUser(email, password)
+    const userId = await api.loginUser(email.trim().toLowerCase(), password)
     if (userId) {
       navigate(`/${userId}`)
     } else {

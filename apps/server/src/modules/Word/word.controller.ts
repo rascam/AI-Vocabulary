@@ -77,9 +77,23 @@ export async function createSingleWordByTerm(userId: string, term: string) {
     throw new Error("Term can't be empty")
   }
 
-  const generatedSingleTerm = await createSingleTranslation(user, term)
-
+  const regex = /\/\//;
+  const found = regex.test(term);
+  const termSplit = term.split("//")
   
+  let generatedSingleTerm = ["",""]
+  if (found) {
+    if (termSplit.length === 2 && termSplit[0] !== "" && termSplit[1] !== "") {
+      termSplit[0].trim()
+      termSplit[1].trim()
+      generatedSingleTerm = termSplit
+    } else {
+     throw new Error("Invalid // term")
+    }
+  } else {
+    generatedSingleTerm = await createSingleTranslation(user, term)
+  }
+
   const language = user.userTargetLang
   const selectedVoice = languages[language].voice
 

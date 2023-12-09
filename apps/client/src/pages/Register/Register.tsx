@@ -20,7 +20,7 @@ function Register() {
 
   async function submitHandler (e: React.FormEvent) {
     e.preventDefault()
-    const userId = await api.createUser({name, email, password, userSrcLang: srcLang, userTargetLang: targetLang, userLevel: level})
+    const userId = await api.createUser({name, email: email.trim().toLowerCase(), password, userSrcLang: srcLang, userTargetLang: targetLang, userLevel: level})
     if (userId) {
       navigate(`/${userId}`)
     } else {

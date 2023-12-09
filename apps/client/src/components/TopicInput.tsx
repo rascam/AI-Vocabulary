@@ -44,8 +44,9 @@ function TopicInput ({userId, updateWords, isGenerating, setIsGenerating}: {user
 
   async function submitSingleHandler (e: React.FormEvent, user: string, term: string) {
     e.preventDefault()
-    setTopic("")
-    await api.createSingleWordByTerm(user, term)
+    const text = term.trim()
+    setTerm("")
+    await api.createSingleWordByTerm(user, text)
     const wordArray = await api.getWordsByUserId(user)
     if (wordArray) {
       updateWords(wordArray)

@@ -13,6 +13,8 @@ export async function updateUserProperty(userId: string, key: string, data: stri
 }
 
 export async function registerUser(user: UserRegistrationBody) {
+
+  user.email.trim().toLowerCase()
   const userExists = await userEmailExists(user.email)
 
   if (userExists) {
@@ -36,6 +38,7 @@ export async function registerUser(user: UserRegistrationBody) {
 
 export async function loginUser(email: string, password: string) {
 
+  email.trim().toLowerCase()
   const { hashedPassword, id } = await getUserByEmail(email)
 
   if (!hashedPassword) {
