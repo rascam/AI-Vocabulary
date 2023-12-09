@@ -2,7 +2,6 @@ import api from "../../lib/api"
 import {User} from "../../lib/types"
 import { languages } from "../../data/languagesConfig"
 
-
 function Settings ({userId, vocCount, learningDirection, slowSpeech, userSrcLang = "en", userTargetLang = "en", autoPlay, setAutoPlay, setUser, setBins}: { userId: string, vocCount: number, learningDirection: string | undefined, slowSpeech: boolean | undefined, userSrcLang: string | undefined, userTargetLang: string | undefined, autoPlay: boolean, setAutoPlay: React.Dispatch<React.SetStateAction<boolean>>, setUser: React.Dispatch<React.SetStateAction<User | null>>, setBins: React.Dispatch<React.SetStateAction<number[]>>}) {
   
   async function toggleLearningDirection() {

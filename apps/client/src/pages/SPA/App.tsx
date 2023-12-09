@@ -21,7 +21,7 @@ function App() {
   const [user, setUser] = useState<User | null>(null)
   const [words, setWords] = useState<Word[]>([])
   const [bins, setBins] = useState([0, 0, 0, 0, 0])
-  const [isGenerating, setIsGenerating] = useState(true)
+  const [isGenerating, setIsGenerating] = useState(false)
 
   const [showElement, setShowElement] = useState({vocList: false, stats: true, settings: false, topicInput: true})
   const [autoPlay, setAutoPlay] = useState(true)
@@ -67,9 +67,9 @@ function App() {
       <StatusRow name={user?.name} showElement={showElement} setShowElement={setShowElement}/>
       {/* <h1 className="title-text text-6xl">AI Vocabulary Trainer</h1> */}
       
-      <div className="flexContainer">
         {showElement.topicInput && loggedInUserId &&
           <TopicInput userId={loggedInUserId} updateWords={(array) => setWords(array)} isGenerating={isGenerating} setIsGenerating={(isGenerating) => setIsGenerating(isGenerating)}/>}
+      <div className="flexContainer">
         {showElement.settings && loggedInUserId &&
           <Settings userId={loggedInUserId} vocCount={words.length || 0} learningDirection={user?.learningDirection} slowSpeech={user?.slowSpeech} userSrcLang={user?.userSrcLang} userTargetLang={user?.userTargetLang} autoPlay={autoPlay} setAutoPlay={(autoPlay) => setAutoPlay(autoPlay)} setUser={(user) => setUser(user)} setBins={(bins) => setBins(bins)}/>}
         {loggedInUserId && user && <LearnModule userId={loggedInUserId} words={(words)} slowSpeech={user.slowSpeech} userScore={user.score} autoPlay={autoPlay} setUser={(user) => setUser(user)} bins={bins} setBins={(bins) => setBins(bins)} />}

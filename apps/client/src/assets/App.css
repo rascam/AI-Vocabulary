@@ -83,6 +83,7 @@ a {
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
+  border-bottom: 0.5px solid #8ecae6;
 }
 
 .statusRow i {
@@ -124,7 +125,7 @@ a {
 
 .inputContainer {
   width: 100%;
-  margin: 1 rem auto 0 auto;
+  margin: 1rem auto 0 auto;
   padding: 0rem;
   display: flex;
   flex-wrap: wrap;
@@ -303,6 +304,7 @@ select {
   display: flex;
   width: 100%;
   margin: 3rem auto 3rem auto;
+  flex-direction: column;
   flex-flow: wrap;
   justify-content: center;
   align-items: center;
@@ -650,6 +652,10 @@ select {
     width: 100%;
     border-radius: 0;
     padding: 0.5rem;
+  }
+
+  .inputContainer {
+    margin: 2.5rem auto 0 auto;
   }
 
   .statusRow {

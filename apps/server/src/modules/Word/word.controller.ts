@@ -45,10 +45,11 @@ export async function createWordsByTopic(userId: string, topic: string) {
   
   const language = user.userTargetLang
   const selectedVoice = languages[language].voice
+  const languageCode = languages[language].code
 
   for (let i = 0; i < generatedWordPairs.length; i++) {
-    const voice = await getGoogleVoice(generatedWordPairs[i][1], language, selectedVoice ,speakingRateNormal)
-    const voiceSlow = await getGoogleVoice(generatedWordPairs[i][1], language, selectedVoice ,speakingRateSlow)
+    const voice = await getGoogleVoice(generatedWordPairs[i][1], languageCode, selectedVoice ,speakingRateNormal)
+    const voiceSlow = await getGoogleVoice(generatedWordPairs[i][1], languageCode, selectedVoice ,speakingRateSlow)
     const image = await getImageController (user, generatedWordPairs[i][0], generatedWordPairs[i][1], englishPhotoSearchTerms[i])
    
     const wordToCreate = {
