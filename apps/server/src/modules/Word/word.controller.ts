@@ -33,12 +33,8 @@ export async function createWordsByTopic(userId: string, topic: string) {
       user,
       generatedWordPairs
     )
-    console.log(
-      "englishPhotoSearchTerms after await: ",
-      englishPhotoSearchTerms
-    )
   } else {
-    englishPhotoSearchTerms = ["","","","","","","","","","",""]
+    englishPhotoSearchTerms = new Array(generatedWordPairs.length).fill("") 
   }
 
   const createdWords: Word[] = []

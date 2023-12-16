@@ -11,7 +11,10 @@ let prompt = ""
   const targetLang = `${languages[user.userTargetLang].language}`
   const targetLang2 = `${languages[user.userTargetLang].language2 || ""}`
   
-  prompt += `Write a numbered vocabulary list of ${amountOfNewWords} new words with their articles but without explanations, `
+  prompt += `Write a numbered vocabulary list of ${amountOfNewWords} new vocabulary items: `
+  prompt += `${Math.floor(amountOfNewWords*0.67)} new ${srcLang2 || srcLang} words with their articles but WITHOUT explanations or parentheses, `
+  prompt += `and ${amountOfNewWords - Math.floor(amountOfNewWords*0.67)} verbs as infinitive, `
+
   if (topic) {
     prompt += `all around the topic "${topic}", `
   }
@@ -19,8 +22,12 @@ let prompt = ""
     targetLang2 || ""
   } ${targetLang} on a ${user.userLevel} level.`
 
+  if (user.userLevel === "advanced") {
+    prompt += ` Advanced means, that you list items which are NOT so common and easy.`
+  }
+ 
   if (user.words.length > 0) {
-    prompt += `Exclude the following words:\n`
+    prompt += `\nEXCLUDE the following words:\n`
     for (let i = 0; i < user.words.length; i++) {
           prompt += `${user.words[i].srcWord}\n`
     } 
@@ -29,6 +36,8 @@ let prompt = ""
   prompt += `\n
   The numbered list has to be in the format:\n
   #. ${srcLang} $$ ${targetLang}\n`
+
+  console.log(prompt)
 
   return prompt
 }

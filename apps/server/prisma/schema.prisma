@@ -42,6 +42,7 @@ model Word {
 enum Level {
   beginner
   sophisticated
+  advanced
 }
 
 enum Direction {

@@ -9,11 +9,12 @@ export async function createWordListByTopic(user: User, topic: string) {
   
   const prompt = createPromptForTopic(user, topic)
 
-  const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang)
+  const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang, user.userLevel)
 
   if (!chatCompletion.content) {
     throw new Error("Chat completion not successful")
   }
+  console.log(chatCompletion.content)
   const newWordList = parseWordList(chatCompletion.content)
 
   return newWordList
@@ -24,7 +25,7 @@ export async function createEnglishPhotoSearchTerms(user: User, wordPairList: [s
   
   const prompt = createPromptForEnglishPhotoSearchTerms(user, wordPairList)
 
-  const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang)
+  const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang, user.userLevel)
 
   if (!chatCompletion.content || chatCompletion.role !== "assistant") {
     throw new Error("Chat completion not successful")
@@ -46,7 +47,7 @@ export async function createSingleTranslation(user: User, term: string) {
   
   const prompt = createPromptForSingleTranslation(user, term)
 
-  const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang)
+  const chatCompletion = await createChatCompletion(prompt, user.userSrcLang, user.userTargetLang, user.userLevel)
 
   if (!chatCompletion.content) {
     throw new Error("Chat completion not successful")

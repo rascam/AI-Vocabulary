@@ -1,3 +1,4 @@
+
 import prisma from "../../lib/prisma";
 
 import { UserCreation, User } from "../../lib/types";
@@ -100,7 +101,8 @@ export async function createUser(user: UserCreation) {
       email: user.email,
       hashedPassword: user.hashedPassword,
       userSrcLang: user.userSrcLang,
-      userTargetLang: user.userTargetLang
+      userTargetLang: user.userTargetLang,
+      userLevel: user.userLevel
     }
   })
   return createUser

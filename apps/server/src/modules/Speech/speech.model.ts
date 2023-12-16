@@ -10,7 +10,7 @@ const keys = JSON.parse(keysEnvVar);
 import { auth } from 'google-auth-library'
 
 export async function getGoogleVoice (word: string, languageCode: string, selectedVoice: string, speakingRate: number) {
-  console.log(`word: ${word}, languagecode: ${languageCode}, selectedVoice: ${selectedVoice}, speakingRate: ${speakingRate}`)
+  // console.log(`word: ${word}, languagecode: ${languageCode}, selectedVoice: ${selectedVoice}, speakingRate: ${speakingRate}`)
 
   if (
     (languageCode === "ja-jp" ||

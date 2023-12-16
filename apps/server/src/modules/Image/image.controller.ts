@@ -9,7 +9,6 @@ export async function getImageController (user: User, srcWord: string, targetWor
     throw new Error("No image search text provided")
   }
   
-  console.log({user})
   let photoSearchTerm = "dictionary"
     if (user.userSrcLang === "en") {
       photoSearchTerm = srcWord

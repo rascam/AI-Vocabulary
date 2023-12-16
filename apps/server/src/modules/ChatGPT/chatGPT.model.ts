@@ -1,25 +1,30 @@
 import openai from './openai'
-import { temperatureGPT } from '../../lib/const'
 import { languages } from "../../lib/languagesConfig"
+import { gptConfig } from '../../lib/gptConfig'
 
 
-export async function createChatCompletion(prompt: string, userSrcLang: string, userTargetLang: string) {
+export async function createChatCompletion(prompt: string, userSrcLang: string, userTargetLang: string, userLevel: string) {
 
   const srcLang = `${languages[userSrcLang].language}`
   const srcLang2 = `${languages[userSrcLang].language2 || ""}`
   const targetLang = `${languages[userTargetLang].language}`
   const targetLang2 = `${languages[userTargetLang].language2 || ""}`
 
+  const assistantDefinition = `I am ${srcLang2 || srcLang} and you are my ${
+    targetLang2 || targetLang
+  } language teacher on a ${userLevel} level.\n\n`
+
+  console.log("assistantDefinition: ", assistantDefinition)
+
   const chatCompletion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    temperature: temperatureGPT,
-    max_tokens: 250,
+    model: gptConfig[userLevel].model,
+    temperature: gptConfig[userLevel].temp,
+    max_tokens: gptConfig[userLevel].maxTokens,
+    presence_penalty: gptConfig[userLevel].presencePenalty,
     messages: [
       {
           role: "system",
-          content: `I am ${srcLang2 || srcLang} and you are my ${
-            targetLang2 || targetLang
-          } language teacher`,
+          content: assistantDefinition,
         },
         {"role": "user", "content": prompt}],
     });
