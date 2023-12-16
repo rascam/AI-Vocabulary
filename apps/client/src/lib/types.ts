@@ -1,10 +1,17 @@
+
+export enum Level {
+  beginner = "beginner",
+  advanced = "advanced",
+  sophisticated = "sophisticated"
+}
+
 export interface User {
   id: string
   email: string
   name?: string
   userSrcLang: string
   userTargetLang: string
-  userLevel: string
+  userLevel: Level
   userVocCount: number
   score: number
   learningDirection: string
@@ -18,7 +25,7 @@ export interface UserCreation {
   password: string
   userSrcLang: string
   userTargetLang: string
-  userLevel: string
+  userLevel: Level
 }
 
 export interface Word {
