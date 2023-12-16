@@ -5,7 +5,7 @@ const GeneratingAnimation = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setDots(prevDots => (prevDots.length >= 18 ? '.' : prevDots + ' .'));
+      setDots(prevDots => (prevDots.length >= 14 ? '.' : prevDots + ' .'));
     }, 400);
 
     return () => clearInterval(interval);
