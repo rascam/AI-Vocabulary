@@ -4,6 +4,7 @@ import ErrorMessage from '../../components/form/ErrorMessage'
 
 
 import api from '../../lib/api'
+import { Level } from '../../lib/types'
 
 function Register() {
 
@@ -14,7 +15,7 @@ function Register() {
   const [password, setPassword] = useState("")
   const [srcLang, setSrcLang] = useState("")
   const [targetLang, setTargetLang] = useState("")
-  const [level, setLevel] = useState("beginner")
+  const [level, setLevel] = useState("beginner" as Level)
 
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -99,7 +100,7 @@ function Register() {
         </select>
         {/* <label htmlFor="input-initLevel">Your language level?</label> */}
         <h2 className="text-lg text-left mt-6">And your learning level?</h2>
-        <select className="max-w-md box-border" id="input-initLevel" name="level" value={level} onChange={(e) => setLevel(e.target.value)}>
+        <select className="max-w-md box-border" id="input-initLevel" name="level" value={level} onChange={(e) => setLevel(e.target.value as Level)}>
           {/* <option disabled selected value={level}>Choose a level</option> */}
           <option value="beginner">Beginner</option>
           <option value="advanced">Intermediate</option>
