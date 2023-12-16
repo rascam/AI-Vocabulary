@@ -20,6 +20,8 @@ export async function registerUser(user: UserRegistrationBody) {
   if (userExists) {
       throw new Error("User already exists")
   }
+
+  console.log("user Level:", user.userLevel)
   const hash = await hashingPassword(user.password)
   const createdUser = await createUser({
     name: user.name,

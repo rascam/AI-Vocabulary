@@ -21,7 +21,7 @@ export async function getUnsplashImageByKeyword(keyword: string) {
   )
 
   const photo = await response.json()
-  console.log(photo.results[0])
+  // console.log(photo.results[0]) 
   const photoCount = photo.results.length
   const photoIndex = Math.floor(Math.random() * photoCount)
   const imgUrl: string = photo.results[photoIndex].urls.thumb || ""

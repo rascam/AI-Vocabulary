@@ -1,3 +1,5 @@
+import { Level } from "@prisma/client"
+
 
 export interface User {
   id: string
@@ -20,7 +22,7 @@ export interface UserRegistrationBody {
   name?: string
   userSrcLang: string
   userTargetLang: string
-  userLevel: string
+  userLevel: Level
 }
 
 export interface UserCreation {
@@ -29,7 +31,7 @@ export interface UserCreation {
   hashedPassword: string
   userSrcLang: string
   userTargetLang: string
-  userLevel: string
+  userLevel: Level
 }
 
 export interface Word {

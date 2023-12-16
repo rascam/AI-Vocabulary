@@ -102,7 +102,7 @@ function Register() {
         <select className="max-w-md box-border" id="input-initLevel" name="level" value={level} onChange={(e) => setLevel(e.target.value)}>
           {/* <option disabled selected value={level}>Choose a level</option> */}
           <option value="beginner">Beginner</option>
-          <option value="sophisticated">Advanced</option>
+          <option value="advanced">Intermediate</option>
         </select>
         <h2 className="text-lg text-left mt-6">And now to you!</h2>
         <input type="text" className="inputfield initDialogInput mt-2 mb-2 max-w-md" id='input-initName' name="name"

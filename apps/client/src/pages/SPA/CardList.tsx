@@ -2,9 +2,6 @@ import { defaultImg, UNSPLASH_APP_NAME } from '../../data/const'
 import { Word } from '../../lib/types'
 import playVoice from '../../utils/playVoice'
 
-console.log({UNSPLASH_APP_NAME})
-console.log({defaultImg})
-
 
 function CardList({words, slowSpeech}: {words: Word[], slowSpeech: boolean}) {
 

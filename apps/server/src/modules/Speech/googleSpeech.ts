@@ -7,7 +7,7 @@ if (!keysEnvVar) {
 }
 
 const keys = JSON.parse(keysEnvVar);
-console.log({keys})
+
 
 
 import { auth } from 'google-auth-library'
